@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">SVARP</string>
+    <string name="description">logo</string>
+    <string name="description1">screen_bg</string>
+    <string name="start">Start</string>
+    <string name="welcome">WELCOME !</string>
+    <string name="talk">Talk to \nSVARP</string>
+    <string name="select_symp">Select \nSymptoms</string>
+    <string name="heading1">Choose Language</string>
+    <string name="konkani">Konkani</string>
+    <string name="description2">India Flag</string>
+    <string name="next">Next</string>
+    <string name="english">English</string>
+    <string name="hindi">Hindi</string>
+    <string name="med">Know your \nMedicine</string>
+</resources>
