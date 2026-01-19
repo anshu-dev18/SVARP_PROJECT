@@ -1,10 +1,42 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.SVARP" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+<resources>
+
+    <!-- Day theme -->
+    <style name="Base.Theme.SVARP.Day" parent="Theme.Material3.Light.NoActionBar">
+
+        <!-- Typography -->
         <item name="fontFamily">@font/noto_sans</item>
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- Primary colors -->
+        <item name="colorPrimary">@color/deep_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/light_blue</item>
+        <item name="colorOnPrimaryContainer">@color/deep_blue</item>
+
+        <!-- Secondary -->
+        <item name="colorSecondary">@color/green</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/soft_green</item>
+        <item name="colorOnSecondaryContainer">@color/black</item>
+
+        <!-- Background & surface -->
+        <item name="android:colorBackground">@color/cream</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+        <item name="colorSurfaceVariant">@color/dark_cream</item>
+        <item name="colorOnSurfaceVariant">@color/light_gray</item>
+
+        <!-- Error -->
+        <item name="colorError">@color/red</item>
+        <item name="colorOnError">@color/white</item>
+
+        <!-- UI polish -->
+        <item name="android:statusBarColor">@color/cream</item>
+        <item name="android:navigationBarColor">@color/cream</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+
     </style>
 
-    <style name="Theme.SVARP" parent="Base.Theme.SVARP" />
+    <style name="Theme.SVARP" parent="Base.Theme.SVARP.Day" />
+
 </resources>

@@ -1,8 +1,40 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.SVARP" parent="Theme.Material3.DayNight.NoActionBar">
+<resources>
+
+    <!-- Night theme -->
+    <style name="Base.Theme.SVARP.Night" parent="Theme.Material3.Dark.NoActionBar">
+
+        <!-- Typography -->
         <item name="fontFamily">@font/noto_sans</item>
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+        <!-- Primary colors -->
+        <item name="colorPrimary">@color/light_blue</item>
+        <item name="colorOnPrimary">@color/deep_blue</item>
+        <item name="colorPrimaryContainer">@color/deep_blue</item>
+        <item name="colorOnPrimaryContainer">@color/light_blue</item>
+
+        <!-- Secondary -->
+        <item name="colorSecondary">@color/soft_green</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondaryContainer">@color/green</item>
+        <item name="colorOnSecondaryContainer">@color/white</item>
+
+        <!-- Background & surface -->
+        <item name="android:colorBackground">@color/black</item>
+        <item name="colorSurface">@color/deep_blue</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorSurfaceVariant">@color/overlay_blue</item>
+        <item name="colorOnSurfaceVariant">@color/light_gray</item>
+
+        <!-- Error -->
+        <item name="colorError">@color/dark_red</item>
+        <item name="colorOnError">@color/white</item>
+
+        <!-- UI polish -->
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+
     </style>
+
 </resources>

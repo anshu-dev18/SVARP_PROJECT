@@ -5,9 +5,19 @@
     <color name="green">#00B600</color>
     <color name="soft_green">#68D96E</color>
     <color name="cream">#F9F3ED</color>
+    <color name="dark_cream">#EDE4DB</color>
     <color name="deep_blue">#1F3A5F</color>
     <color name="blue">#0B4697</color>
-    <color name="light_gray">#7C7C7C</color>
     <color name="light_blue">#95C1F8</color>
+    <color name="light_gray">#7C7C7C</color>
+    <color name="border_gray">#D6D6D6</color>
+    <color name="disabled_gray">#B0B0B0</color>
+    <color name="soft_yellow">#F3D37A</color>
     <color name="red">#CE0046</color>
+    <color name="gray">#505050</color>
+    <color name="gray_700">#616161</color>
+    <color name="dark_red">#9E0036</color>
+    <color name="overlay_blue">#1F3A5F33</color>
+    <color name="brown">#4E2800</color>
+
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,9 +12,9 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/description1"
         android:scaleType="fitCenter"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/page3" />
 
     <ImageView
@@ -26,8 +25,8 @@
         android:contentDescription="@string/description1"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/page2" />
 
     <TextView
@@ -49,10 +48,11 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/talk"
         android:text="@string/talk"
         android:textAlignment="viewStart"
-        android:textSize="30sp"
         android:textColor="@color/white"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:backgroundTint="@color/green"
         app:cornerRadius="90dp"
@@ -61,10 +61,9 @@
         app:iconPadding="25dp"
         app:iconSize="55dp"
         app:iconTint="@color/white"
-        android:contentDescription="@string/talk"
-        app:layout_constraintTop_toBottomOf="@id/bg1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/bg1" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_symp"
@@ -72,22 +71,22 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="15dp"
+        android:contentDescription="@string/select_symp"
         android:text="@string/select_symp"
         android:textAlignment="viewStart"
-        android:textSize="30sp"
         android:textColor="@color/white"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:backgroundTint="@color/deep_blue"
         app:cornerRadius="90dp"
         app:icon="@drawable/symp"
-        app:iconTint="@color/white"
         app:iconGravity="textStart"
         app:iconPadding="25dp"
         app:iconSize="55dp"
-        android:contentDescription="@string/select_symp"
-        app:layout_constraintTop_toBottomOf="@id/btn_talk"
+        app:iconTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/btn_talk" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_info"
@@ -95,22 +94,22 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="15dp"
+        android:contentDescription="@string/med"
         android:text="@string/med"
         android:textAlignment="viewStart"
-        android:textSize="30sp"
         android:textColor="@color/white"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:backgroundTint="@color/red"
         app:cornerRadius="90dp"
         app:icon="@drawable/med"
-        app:iconTint="@color/white"
         app:iconGravity="textStart"
         app:iconPadding="25dp"
         app:iconSize="55dp"
-        android:contentDescription="@string/med"
-        app:layout_constraintTop_toBottomOf="@id/btn_symp"
+        app:iconTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/btn_symp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -118,6 +117,7 @@
         android:layout_height="61dp"
         android:layout_marginTop="76dp"
         android:layout_marginEnd="24dp"
+        android:contentDescription="@string/heading1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/lang" />
