@@ -12,7 +12,6 @@
     <string name="next">Next</string>
     <string name="english">English</string>
     <string name="hindi">Hindi</string>
-    <string name="med">Know your \nMedicine</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="tag">Adding your symptoms helps AI give more accurate results.</string>
@@ -20,9 +19,9 @@
     <string name="medicine_assistant_title">Medicine Assistant</string>
     <string name="disclaimer_text"> For educational purposes only. Not a substitute for professional medical advice, diagnosis, or treatment.
 </string>
-    <string name="hint_medicine_form">Medicine form</string>
+    <string name="hint_medicine_form">Medicine form *</string>
     <string name="hint_medicine_name">Medicine name *</string>
-    <string name="hint_strength">Strength (e.g. 500 mg, 10 mg/mL)</string>
+    <string name="hint_strength">Strength (e.g. 500 mg, 10 mg/mL) *</string>
     <string name="hint_symptoms">Describe your problem / symptoms (optional)</string>
 
     <string name="label_prescribed">Was this medicine prescribed by a doctor?</string>
