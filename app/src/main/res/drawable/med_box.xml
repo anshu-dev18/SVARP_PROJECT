@@ -2,7 +2,7 @@
     android:shape="rectangle">
 
     <!-- Soft elevated surface -->
-    <solid android:color="@color/dark_cream" />
+    <solid android:color="#89EDE4DB" />
 
     <!-- More realistic corner radius -->
     <corners android:radius="16dp" />
