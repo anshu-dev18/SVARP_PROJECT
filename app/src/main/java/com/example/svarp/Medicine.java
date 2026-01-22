@@ -1,5 +1,6 @@
 package com.example.svarp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -35,12 +36,18 @@ public class Medicine extends AppCompatActivity {
         rgPrescribed = findViewById(R.id.rgPrescribed);
         btnAnalyze = findViewById(R.id.btnAnalyze);
 
+        btnAnalyze.setOnClickListener(v -> {
+            Intent intent = new Intent(Medicine.this, MedicineResultActivity.class);
+            startActivity(intent);
+        });
+
         // Initially hidden
         btnAnalyze.setVisibility(View.GONE);
 
         setupFormDropdown();
         setupListeners();
     }
+
 
     private void setupFormDropdown() {
         String[] forms = {"Tablet", "Capsule", "Syrup", "Injection", "Other"};
@@ -112,12 +119,13 @@ public class Medicine extends AppCompatActivity {
         rgPrescribed.setOnCheckedChangeListener((group, checkedId) -> checkFormCompletion());
     }
 
+
     private void checkFormCompletion() {
 
         boolean isFormSelected = !actForm.getText().toString().trim().isEmpty();
         boolean isMedicineFilled = !etMedicine.getText().toString().trim().isEmpty();
         boolean isDoseFilled = !etStrength.getText().toString().trim().isEmpty();
-        boolean isProblemFilled = !etProblem.getText().toString().trim().isEmpty();
+//        boolean isProblemFilled = !etProblem.getText().toString().trim().isEmpty();
         boolean isPrescribedSelected = rgPrescribed.getCheckedRadioButtonId() != -1;
 
         if (isFormSelected && isMedicineFilled && isDoseFilled

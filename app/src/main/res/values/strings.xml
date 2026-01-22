@@ -10,13 +10,19 @@
     <string name="konkani">Konkani</string>
     <string name="description2">India Flag</string>
     <string name="next">Next</string>
+    <string name="send">Send</string>
+    <string name="sample_ai_message">Hello, I am SVARP. How can I help you today?</string>
     <string name="english">English</string>
     <string name="hindi">Hindi</string>
     <string name="yes">Yes</string>
+    <string name="chat_title">Chat with SVARP</string>
+    <string name="chat_hint">Ask Svarp…</string>
+    <string name="sample_user_message">I have a headache and fever.</string>
+
     <string name="no">No</string>
     <string name="tag">Adding your symptoms helps AI give more accurate results.</string>
     <!-- Medicine Assistant UI -->
-    <string name="medicine_assistant_title">Medicine Assistant</string>
+    <string name="med">Medicine Assistant</string>
     <string name="disclaimer_text"> For educational purposes only. Not a substitute for professional medical advice, diagnosis, or treatment.
 </string>
     <string name="hint_medicine_form">Medicine form *</string>
@@ -29,5 +35,13 @@
     <string name="action_analyze">Analyze</string>
 
     <string name="cd_mic">Speak symptoms</string>
+
+    <string name="ai_explanation_title">AI Explanation</string>
+    <string name="section_why_given">Why this medicine is given</string>
+    <string name="section_condition">What condition it usually treats</string>
+    <string name="section_match">How your symptoms match</string>
+    <string name="refine_symptoms">Refine Symptoms</string>
+    <string name="back">Back</string>
+
 
 </resources>

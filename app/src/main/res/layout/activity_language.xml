@@ -159,7 +159,7 @@
         android:id="@+id/btnNext"
         android:layout_width="259dp"
         android:layout_height="72dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="52dp"
         android:gravity="center"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
