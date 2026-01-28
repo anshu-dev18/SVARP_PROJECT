@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/description1"
+        android:contentDescription="@null"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,14 +63,14 @@
             <!-- 🔽 DROPDOWN: MEDICAL FORM -->
             <AutoCompleteTextView
                 android:id="@+id/actForm"
-                android:layout_width="0dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/med_box"
                 android:clickable="true"
                 android:focusable="false"
-                android:hint="@string/hint_medicine_form"
+                android:hint="@string/medicine_form"
                 android:inputType="none"
                 android:padding="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -80,27 +80,28 @@
 
             <EditText
                 android:id="@+id/etMedicine"
-                android:layout_width="0dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
+                android:autofillHints="Medicine Name"
                 android:background="@drawable/med_box"
-                android:hint="@string/hint_medicine_name"
+                android:hint="@string/medicine_name"
                 android:inputType="textCapWords"
                 android:padding="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/actForm" />
 
-            <!-- 🧪 DOSE / STRENGTH (UNIT WILL BE SET BY CODE) -->
             <EditText
                 android:id="@+id/etStrength"
-                android:layout_width="0dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
+                android:autofillHints="medicine strength"
                 android:background="@drawable/med_box"
-                android:hint="@string/hint_strength"
+                android:hint="@string/strength"
                 android:inputType="numberDecimal"
                 android:padding="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +110,7 @@
 
             <FrameLayout
                 android:id="@+id/problemContainer"
-                android:layout_width="0dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
@@ -121,9 +122,10 @@
                     android:id="@+id/etProblem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="describe your symptoms"
                     android:background="@drawable/med_box"
                     android:gravity="top"
-                    android:hint="@string/hint_symptoms"
+                    android:hint="@string/symptoms"
                     android:inputType="textMultiLine"
                     android:minLines="4"
                     android:padding="14dp" />
@@ -135,7 +137,7 @@
                     android:layout_gravity="end|bottom"
                     android:layout_margin="8dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="@string/cd_mic"
+                    android:contentDescription="@string/mic_icon"
                     android:src="@drawable/mic_24px" />
             </FrameLayout>
 
@@ -145,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="22dp"
-                android:text="@string/label_prescribed"
+                android:text="@string/prescribed"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -176,13 +178,12 @@
                     android:text="@string/no" />
             </RadioGroup>
 
-            <!-- 🚫 INVISIBLE INITIALLY -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAnalyze"
                 android:layout_width="320dp"
                 android:layout_height="68dp"
                 android:layout_marginTop="52dp"
-                android:text="@string/action_analyze"
+                android:text="@string/btn_analyze"
                 android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"

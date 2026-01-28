@@ -1,47 +1,69 @@
 <resources>
+
+    <!-- App Info -->
     <string name="app_name">SVARP</string>
     <string name="description">logo</string>
-    <string name="description1">screen_bg</string>
-    <string name="start">Start</string>
+    <string name="description1">India Flag</string>
+    <string name="description2">Symptoms_img</string>
+    <string name="menu">Button to open Menu</string>
+    <string name="description3">mic button</string>
+
+    <!--    headings-->
+    <string name="heading1">Choose Language</string>
+    <string name="heading2">AI Explanation</string>
+    <string name="heading3">Chat with SVARP</string>
+
+    <!-- General Actions -->
+    <string name="btn_start">Start</string>
+    <string name="next">Next</string>
+    <string name="btn_send">Send</string>
+    <string name="back">Back</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="btn_report">Get Report</string>
+
+    <!-- Welcome / Home -->
     <string name="welcome">WELCOME !</string>
     <string name="talk">Talk to \nSVARP</string>
-    <string name="select_symp">Select \nSymptoms</string>
-    <string name="heading1">Choose Language</string>
-    <string name="konkani">Konkani</string>
-    <string name="description2">India Flag</string>
-    <string name="next">Next</string>
-    <string name="send">Send</string>
-    <string name="sample_ai_message">Hello, I am SVARP. How can I help you today?</string>
+
+    <string name="select_Symptoms">Select Symptoms</string>
+    <string name="tag">Adding your symptoms helps AI give more accurate results.</string>
+
+    <!-- Language Selection -->
+
     <string name="english">English</string>
     <string name="hindi">Hindi</string>
-    <string name="yes">Yes</string>
-    <string name="chat_title">Chat with SVARP</string>
+    <string name="konkani">Konkani</string>
+
+    <!-- Chat -->
     <string name="chat_hint">Ask Svarp…</string>
+    <string name="sample_ai_message">Hello, I am SVARP. How can I help you today?</string>
     <string name="sample_user_message">I have a headache and fever.</string>
+    <string name="mic_icon">Speak symptoms</string>
 
-    <string name="no">No</string>
-    <string name="tag">Adding your symptoms helps AI give more accurate results.</string>
-    <!-- Medicine Assistant UI -->
+    <!-- Symptom List -->
+    <string-array name="symptom_list">
+        <item>Fever</item>
+        <item>Cough</item>
+        <item>Headache</item>
+        <item>Sneezing</item>
+        <item>Cold</item>
+        <item>Stomach Pain</item>
+    </string-array>
+
+    <!-- Medicine Assistant -->
     <string name="med">Medicine Assistant</string>
-    <string name="disclaimer_text"> For educational purposes only. Not a substitute for professional medical advice, diagnosis, or treatment.
-</string>
-    <string name="hint_medicine_form">Medicine form *</string>
-    <string name="hint_medicine_name">Medicine name *</string>
-    <string name="hint_strength">Strength (e.g. 500 mg, 10 mg/mL) *</string>
-    <string name="hint_symptoms">Describe your problem / symptoms (optional)</string>
+    <string name="disclaimer">For educational purposes only. Not a substitute for professional medical advice, diagnosis, or treatment.</string>
+    <string name="medicine_form">Medicine form *</string>
+    <string name="medicine_name">Medicine name *</string>
+    <string name="strength">Strength (e.g. 500 mg, 10 mg/mL) *</string>
+    <string name="symptoms">Describe your problem / symptoms (optional)</string>
+    <string name="prescribed"> Was this medicine prescribed by a doctor?</string>
+    <string name="btn_analyze">Analyze</string>
 
-    <string name="label_prescribed">Was this medicine prescribed by a doctor?</string>
-
-    <string name="action_analyze">Analyze</string>
-
-    <string name="cd_mic">Speak symptoms</string>
-
-    <string name="ai_explanation_title">AI Explanation</string>
-    <string name="section_why_given">Why this medicine is given</string>
-    <string name="section_condition">What condition it usually treats</string>
-    <string name="section_match">How your symptoms match</string>
-    <string name="refine_symptoms">Refine Symptoms</string>
-    <string name="back">Back</string>
-
+    <string name="explanation1">Why this medicine is given</string>
+    <string name="explanation2">What condition it usually treats</string>
+    <string name="explanation3">How your symptoms match</string>
+    <string name="btn_refine">Refine Symptoms</string>
 
 </resources>

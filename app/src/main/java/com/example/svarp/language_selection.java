@@ -5,9 +5,11 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.google.android.material.button.MaterialButton;
 
 public class language_selection extends AppCompatActivity {
@@ -56,7 +58,7 @@ public class language_selection extends AppCompatActivity {
             }
             btnNext.setTranslationX(0f);
 
-            Intent intent = new Intent(language_selection.this, MainActivity2.class);
+            Intent intent = new Intent(language_selection.this, Main_Screen.class);
             startActivity(intent);
             finish();
         });
@@ -66,7 +68,7 @@ public class language_selection extends AppCompatActivity {
 
         // Reset previous selection
         if (selectedLanguage != null) {
-            selectedLanguage.setBackgroundResource(R.drawable.lang_box_default);
+            selectedLanguage.setBackgroundResource(R.drawable.lang_box_bg);
         }
 
         // Apply selected drawable (keeps shape + outline)

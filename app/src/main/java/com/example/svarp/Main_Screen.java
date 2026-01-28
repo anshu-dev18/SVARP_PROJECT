@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 
-public class MainActivity2 extends AppCompatActivity {
+public class Main_Screen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_main_screen);
 
         // Initialize views
         MaterialButton btnTalk = findViewById(R.id.btn_talk);
@@ -24,23 +24,23 @@ public class MainActivity2 extends AppCompatActivity {
 
         // Talk button → opens voice interaction screen
         btnTalk.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity2.this, talkTOsvarp.class);
+            Intent intent = new Intent(Main_Screen.this, talk_to_svarp.class);
             startActivity(intent);
         });
 
         // Symptoms button → opens symptom selection screen
         btnSymp.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity2.this, Select_Symptoms.class);
+            Intent intent = new Intent(Main_Screen.this, Select_Symptoms.class);
             startActivity(intent);
         });
 
         // Medical info button → opens medicine info screen
         btnInfo.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity2.this, Medicine.class);
+            Intent intent = new Intent(Main_Screen.this, Medicine.class);
             startActivity(intent);
         });
         languageIcon.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity2.this, language_selection.class);
+            Intent intent = new Intent(Main_Screen.this, language_selection.class);
             startActivity(intent);
         });
 

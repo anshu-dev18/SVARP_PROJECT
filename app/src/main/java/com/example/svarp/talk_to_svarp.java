@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class talkTOsvarp extends AppCompatActivity {
+public class talk_to_svarp extends AppCompatActivity {
 
     private final List<ChatMessage> chatList = new ArrayList<>();
 
@@ -135,7 +135,7 @@ public class talkTOsvarp extends AppCompatActivity {
 
         if (msg.equals("hi") || msg.equals("hello")) {
             addMessage(
-                    "Hello!\n— I'm SVARP! How may I assist you today?",
+                    "Hello!\nI'm SVARP! How may I assist you today?",
                     false
             );
         }

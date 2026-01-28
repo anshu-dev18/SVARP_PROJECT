@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F5EE">
+    android:background="#F8F5EE"
+    tools:context=".Main_Screen">
 
     <ImageView
         android:id="@+id/bg1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/description1"
+        android:contentDescription="@null"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/page3" />
-
-    <ImageView
-        android:id="@+id/bg2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/description1"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/page2" />
 
     <TextView
         android:id="@+id/welcome"
@@ -44,7 +34,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_talk"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="20dp"
@@ -52,7 +42,7 @@
         android:text="@string/talk"
         android:textAlignment="viewStart"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:backgroundTint="@color/green"
         app:cornerRadius="90dp"
@@ -66,20 +56,20 @@
         app:layout_constraintTop_toBottomOf="@id/bg1" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_symp"
-        android:layout_width="0dp"
+        android:id="@+id/btn_symptoms"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="15dp"
-        android:contentDescription="@string/select_symp"
-        android:text="@string/select_symp"
+        android:contentDescription="@string/select_Symptoms"
+        android:text="@string/select_Symptoms"
         android:textAlignment="viewStart"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:backgroundTint="@color/deep_blue"
         app:cornerRadius="90dp"
-        app:icon="@drawable/symp"
+        app:icon="@drawable/symptoms"
         app:iconGravity="textStart"
         app:iconPadding="25dp"
         app:iconSize="55dp"
@@ -88,9 +78,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_talk" />
 
+    <ImageView
+        android:id="@+id/bg2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/page2" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_info"
-        android:layout_width="0dp"
+        android:layout_width="297dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="15dp"
@@ -98,9 +100,9 @@
         android:text="@string/med"
         android:textAlignment="viewStart"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"
-        app:backgroundTint="@color/red"
+        app:backgroundTint="@color/dark_red"
         app:cornerRadius="90dp"
         app:icon="@drawable/med"
         app:iconGravity="textStart"
@@ -109,14 +111,14 @@
         app:iconTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_symp" />
+        app:layout_constraintTop_toBottomOf="@id/btn_symptoms" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/select_language"
         android:layout_width="70dp"
         android:layout_height="61dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="16dp"
         android:contentDescription="@string/heading1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

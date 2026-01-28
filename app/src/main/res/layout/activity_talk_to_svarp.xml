@@ -6,23 +6,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cream"
-    tools:context=".talkTOsvarp">
+    tools:context=".talk_to_svarp">
 
-    <!-- Header -->
-    <TextView
-        android:id="@+id/tvTitle"
+    <!--header container-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="@string/chat_title"
-        android:textColor="@color/deep_blue"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <!-- Scrollable Chat -->
+        <!--Menu button-->
+        <ImageButton
+            android:id="@+id/btn_menu"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:importantForAccessibility="yes"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/menu_24px" />
+
+
+        <!-- Heading -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="@string/heading3"
+            android:textColor="@color/deep_blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivLogo"
+            app:layout_constraintStart_toEndOf="@id/btn_menu"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--logo-->
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="15dp"
+            android:contentDescription="@string/description"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--chat section-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChat"
         android:layout_width="0dp"
@@ -32,9 +75,10 @@
         app:layout_constraintBottom_toTopOf="@id/inputContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/headerContainer"
         tools:listitem="@layout/item_chat_message" />
-    <!-- Input Area -->
+
+    <!--    input section-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/inputContainer"
         android:layout_width="0dp"
@@ -45,7 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- Message Box (TEXT + ICON INSIDE ONE BOX) -->
+        <!-- Message Box -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/messageBox"
             android:layout_width="0dp"
@@ -65,46 +109,42 @@
                 android:autofillHints="none"
                 android:background="@android:color/transparent"
                 android:hint="@string/chat_hint"
-                android:inputType="textAutoComplete"
+                android:importantForAutofill="no"
+                android:inputType="text"
                 android:maxLines="4"
                 android:padding="10dp"
-                android:paddingEnd="48dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/actionContainer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="RtlSymmetry" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-
-            <!-- Action Slot (Mic / Send INSIDE BOX) -->
+            <!-- Action Slot -->
             <FrameLayout
                 android:id="@+id/actionContainer"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
-                <!-- Mic (DEFAULT) -->
+                <!--mic button-->
                 <ImageButton
                     android:id="@+id/btnMic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="@string/cd_mic"
-                    android:padding="8dp"
+                    android:contentDescription="@string/mic_icon"
+                    android:padding="12dp"
                     app:srcCompat="@drawable/mic_24px" />
-
-                <!-- Send (HIDDEN INITIALLY) -->
+                <!--sen button-->
                 <ImageButton
                     android:id="@+id/btnSend"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="@string/send"
-                    android:padding="8dp"
+                    android:contentDescription="@string/btn_send"
+                    android:padding="12dp"
                     android:visibility="gone"
                     app:srcCompat="@drawable/send_24px" />
 
@@ -113,6 +153,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

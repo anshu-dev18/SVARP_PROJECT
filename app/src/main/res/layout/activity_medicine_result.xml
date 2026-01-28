@@ -14,7 +14,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/description1"
+        android:contentDescription="@null"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +22,6 @@
         app:srcCompat="@drawable/page2" />
 
     <!-- Back Button -->
-    <!--        android:src="@drawable/ic_back"-->
-
     <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="48dp"
@@ -36,14 +34,14 @@
         app:tint="@color/deep_blue" />
 
 
-    <!-- Title -->
+    <!-- heading -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        android:text="@string/ai_explanation_title"
+        android:text="@string/heading2"
         android:textColor="@color/deep_blue"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -51,7 +49,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Why Given -->
+    <!-- Explanations 1 -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardWhy"
         android:layout_width="0dp"
@@ -69,11 +67,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="@string/section_why_given"
+            android:text="@string/explanation1"
             android:textColor="@color/gray" />
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Condition -->
+    <!-- Explanations 2 -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardCondition"
         android:layout_width="0dp"
@@ -90,11 +88,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="@string/section_condition"
+            android:text="@string/explanation2"
             android:textColor="@color/gray" />
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Symptom Match -->
+    <!-- Explanations 3 -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardMatch"
         android:layout_width="0dp"
@@ -111,7 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="@string/section_match"
+            android:text="@string/explanation3"
             android:textColor="@color/gray" />
     </com.google.android.material.card.MaterialCardView>
 
@@ -134,16 +132,15 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRefine"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginTop="304dp"
-        android:text="@string/refine_symptoms"
+        android:layout_marginTop="5dp"
+        android:text="@string/btn_refine"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:backgroundTint="@color/deep_blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardWarning" />
 
@@ -152,7 +149,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="16dp"
-        android:text="@string/disclaimer_text"
+        android:text="@string/disclaimer"
         android:textColor="@color/gray"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@+id/bg2"
