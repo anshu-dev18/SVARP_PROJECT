@@ -1,98 +1,36 @@
 package com.example.svarp;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.button.MaterialButton;
+import java.util.Arrays;
+import java.util.List;
 
 public class language_selection extends AppCompatActivity {
 
-    private ConstraintLayout english, hindi, konkani;
-    private ConstraintLayout selectedLanguage = null;
-    private MaterialButton btnNext;
-    private ObjectAnimator nudgeAnimator;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_language);
 
-        // Views
-        english = findViewById(R.id.langEnglish);
-        hindi = findViewById(R.id.langHindi);
-        konkani = findViewById(R.id.langKonkani);
-        btnNext = findViewById(R.id.btnNext);
+        recyclerView = findViewById(R.id.recyclerLanguages);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Next button hidden initially
-        btnNext.setVisibility(View.GONE);
-
-        // Prepare nudge animation (DO NOT start yet)
-        nudgeAnimator = ObjectAnimator.ofFloat(
-                btnNext,
-                "translationX",
-                0f,
-                12f
+        List<String> languages = Arrays.asList(
+                getString(R.string.lang_english),
+                getString(R.string.lang_hindi),
+                getString(R.string.lang_konkani),
+                getString(R.string.lang_marathi),
+                getString(R.string.lang_tamil),
+                getString(R.string.lang_telugu),
+                getString(R.string.lang_bengali)
         );
-        nudgeAnimator.setDuration(500);
-        nudgeAnimator.setRepeatMode(ValueAnimator.REVERSE);
-        nudgeAnimator.setRepeatCount(ValueAnimator.INFINITE);
 
-        // Language selection listeners
-        english.setOnClickListener(v -> selectLanguage(english));
-        hindi.setOnClickListener(v -> selectLanguage(hindi));
-        konkani.setOnClickListener(v -> selectLanguage(konkani));
-
-        // NEXT button navigation
-        btnNext.setOnClickListener(v -> {
-            // Stop animation cleanly
-            if (nudgeAnimator != null) {
-                nudgeAnimator.cancel();
-            }
-            btnNext.setTranslationX(0f);
-
-            Intent intent = new Intent(language_selection.this, Main_Screen.class);
-            startActivity(intent);
-            finish();
-        });
-    }
-
-    private void selectLanguage(ConstraintLayout selectedView) {
-
-        // Reset previous selection
-        if (selectedLanguage != null) {
-            selectedLanguage.setBackgroundResource(R.drawable.lang_box_bg);
-        }
-
-        // Apply selected drawable (keeps shape + outline)
-        selectedView.setBackgroundResource(R.drawable.lang_box_selected);
-        selectedLanguage = selectedView;
-
-        // Reveal Next button + start attention animation
-        if (btnNext.getVisibility() != View.VISIBLE) {
-            btnNext.setAlpha(0f);
-            btnNext.setVisibility(View.VISIBLE);
-            btnNext.animate()
-                    .alpha(1f)
-                    .setDuration(300)
-                    .start();
-
-            nudgeAnimator.start();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (nudgeAnimator != null) {
-            nudgeAnimator.cancel();
-        }
+        recyclerView.setAdapter(new LanguageAdapter(languages));
     }
 }

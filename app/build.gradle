@@ -3,28 +3,32 @@ plugins {
 }
 
 android {
-    namespace 'com.example.svarp'
-    compileSdk 36
+    namespace = "com.example.svarp"
+    compileSdk = 36
 
     defaultConfig {
-        applicationId "com.example.svarp"
-        minSdk 30
-        targetSdk 36
-        versionCode 1
-        versionName "1.0"
+        applicationId = "com.example.svarp"
+        minSdk = 30
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled = false
+            proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+            )
         }
     }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 

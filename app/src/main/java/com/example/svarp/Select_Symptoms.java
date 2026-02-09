@@ -1,6 +1,8 @@
 package com.example.svarp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,30 +14,89 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class Select_Symptoms extends AppCompatActivity {
 
+    private static final int GRID_SPAN_COUNT = 2;
+    private Button btn_report;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_select_symptoms);
 
-        // Edge-to-edge padding
+        btn_report = findViewById(R.id.btn_report);
+
+        applyWindowInsets();
+        setupBackButton();
+        setupReportButton();
+        setupRecyclerView();
+    }
+
+    private void applyWindowInsets() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            v.setPadding(
+                    systemBars.left,
+                    systemBars.top,
+                    systemBars.right,
+                    systemBars.bottom
+            );
             return insets;
         });
+    }
 
-        // 1️⃣ Get RecyclerView
+    private void setupBackButton() {
+        findViewById(R.id.btnBack).setOnClickListener(v -> onBackPressed());
+    }
+
+    private void setupReportButton() {
+        btn_report.setOnClickListener(v -> {
+            Intent intent = new Intent(Select_Symptoms.this, assessment_res.class);
+            startActivity(intent);
+        });
+    }
+
+    private void setupRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.symptomList);
 
-        // 2️⃣ Load symptoms from strings.xml
-        String[] symptoms = getResources().getStringArray(R.array.symptom_list);
+        btn_report.setVisibility(Button.GONE);
 
-        // 3️⃣ Grid layout: 3 items per row
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        String[] symptoms = {
+                "Fever",
+                "Cough",
+                "Headache",
+                "Fatigue",
+                "Sore throat",
+                "Nausea"
+        };
 
-        // 4️⃣ Attach adapter (connects item_symptom.xml)
-        SymptomAdapter adapter = new SymptomAdapter(symptoms);
+        int[] icons = {
+                R.drawable.fever,
+                R.drawable.cough,
+                R.drawable.headache,
+                R.drawable.fatigue,
+                R.drawable.sore_throat,
+                R.drawable.vomit
+        };
+
+        recyclerView.setLayoutManager(
+                new GridLayoutManager(this, GRID_SPAN_COUNT)
+        );
+
+        SymptomAdapter adapter = new SymptomAdapter(
+                symptoms,
+                icons,
+                selectedCount -> {
+                    if (selectedCount > 0) {
+                        btn_report.setVisibility(Button.VISIBLE);
+                        btn_report.setText(
+                                "Continue (" + selectedCount + " Selected)"
+                        );
+                    } else {
+                        btn_report.setVisibility(Button.GONE);
+                    }
+                }
+        );
+
         recyclerView.setAdapter(adapter);
     }
 }

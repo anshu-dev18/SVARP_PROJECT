@@ -2,9 +2,16 @@ package com.example.svarp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -13,36 +20,59 @@ public class Main_Screen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main_screen);
 
-        // Initialize views
-        MaterialButton btnTalk = findViewById(R.id.btn_talk);
-        MaterialButton btnSymp = findViewById(R.id.btn_symp);
-        MaterialButton btnInfo = findViewById(R.id.btn_info);
-        ImageView languageIcon = findViewById(R.id.imageView);
+        // Views
+        MaterialButton btnMic = findViewById(R.id.btn_mic);
+        ImageView appSetting = findViewById(R.id.appSetting);
+        ConstraintLayout cardSymptoms = findViewById(R.id.cardSymptoms);
+        ConstraintLayout cardHistory = findViewById(R.id.cardHistory);
 
+        // Match system bars with navigation bar color
+        getWindow().setStatusBarColor(
+                getResources().getColor(R.color.blue_900, getTheme())
+        );
 
-        // Talk button → opens voice interaction screen
-        btnTalk.setOnClickListener(v -> {
-            Intent intent = new Intent(Main_Screen.this, talk_to_svarp.class);
-            startActivity(intent);
+// Optional: also match bottom navigation bar if you want full consistency
+        getWindow().setNavigationBarColor(
+                getResources().getColor(R.color.blue_100, getTheme())
+        );
+
+// Correct icon contrast (light background → dark icons)
+        WindowInsetsControllerCompat controller =
+                ViewCompat.getWindowInsetsController(getWindow().getDecorView());
+
+        if (controller != null) {
+            controller.setAppearanceLightStatusBars(true);
+            controller.setAppearanceLightNavigationBars(true);
+        }
+        View root = findViewById(android.R.id.content);
+        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(
+                    systemBars.left,
+                    systemBars.top,
+                    systemBars.right,
+                    systemBars.bottom
+            );
+            return insets;
         });
 
-        // Symptoms button → opens symptom selection screen
-        btnSymp.setOnClickListener(v -> {
-            Intent intent = new Intent(Main_Screen.this, Select_Symptoms.class);
-            startActivity(intent);
-        });
+        // Navigation
+        btnMic.setOnClickListener(v ->
+                startActivity(new Intent(this, TalkToSvarp.class))
+        );
+        appSetting.setOnClickListener(v ->
+                startActivity(new Intent(this, setting.class))
+        );
 
-        // Medical info button → opens medicine info screen
-        btnInfo.setOnClickListener(v -> {
-            Intent intent = new Intent(Main_Screen.this, Medicine.class);
-            startActivity(intent);
-        });
-        languageIcon.setOnClickListener(v -> {
-            Intent intent = new Intent(Main_Screen.this, language_selection.class);
-            startActivity(intent);
-        });
+        cardSymptoms.setOnClickListener(v ->
+                startActivity(new Intent(this, Select_Symptoms.class))
+        );
 
+        cardHistory.setOnClickListener(v ->
+                startActivity(new Intent(this, history.class))
+        );
     }
 }

@@ -2,34 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.svarp">
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
-        android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/logo1"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:theme="@style/Theme.SVARP">
         <activity
-            android:name=".MedicineResultActivity"
+            android:name=".care_guidance"
             android:exported="false" />
         <activity
-            android:name=".Medicine"
+            android:name=".privacy"
             android:exported="false" />
         <activity
-            android:name=".Select_Symptoms"
+            android:name=".about"
             android:exported="false" />
         <activity
-            android:name=".talk_to_svarp"
-            android:exported="false"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
-
-        <activity
-            android:name=".language_selection"
+            android:name=".setting"
             android:exported="false" />
         <activity
-            android:name=".Main_Screen"
+            android:name=".history"
+            android:exported="false" />
+        <activity
+            android:name=".assessment_res"
             android:exported="false" />
         <activity
             android:name=".Splash_Screen"
@@ -40,6 +35,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".OnboardingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Main_Screen"
+            android:exported="false" />
+        <activity
+            android:name=".language_selection"
+            android:exported="false" />
+        <activity
+            android:name=".Select_Symptoms"
+            android:exported="false" />
+        <activity
+            android:name=".TalkToSvarp"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
     </application>
 
 </manifest>

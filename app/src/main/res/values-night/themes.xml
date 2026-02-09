@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- Night theme -->
@@ -6,32 +7,32 @@
         <!-- Typography -->
         <item name="fontFamily">@font/noto_sans</item>
 
-        <!-- Primary colors -->
-        <item name="colorPrimary">@color/light_blue</item>
-        <item name="colorOnPrimary">@color/deep_blue</item>
-        <item name="colorPrimaryContainer">@color/deep_blue</item>
-        <item name="colorOnPrimaryContainer">@color/light_blue</item>
+        <!-- Primary (still brand-led, not flashy) -->
+        <item name="colorPrimary">@color/blue_700</item>
+        <item name="colorOnPrimary">@color/charcoal</item>
+        <item name="colorPrimaryContainer">@color/blue_900</item>
+        <item name="colorOnPrimaryContainer">@color/white</item>
 
-        <!-- Secondary -->
-        <item name="colorSecondary">@color/soft_green</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="colorSecondaryContainer">@color/green</item>
+        <!-- Secondary (supportive emphasis) -->
+        <item name="colorSecondary">@color/blue_600</item>
+        <item name="colorSecondaryContainer">@color/blue_900</item>
         <item name="colorOnSecondaryContainer">@color/white</item>
 
-        <!-- Background & surface -->
-        <item name="android:colorBackground">@color/black</item>
-        <item name="colorSurface">@color/deep_blue</item>
+        <!-- Background & Surface -->
+        <item name="android:colorBackground">@color/blue_900</item>
+        <item name="colorSurface">@color/blue_900</item>
+        <item name="colorSurfaceVariant">@color/blue_800</item>
+
+        <!-- Text on surfaces -->
         <item name="colorOnSurface">@color/white</item>
-        <item name="colorSurfaceVariant">@color/overlay_blue</item>
-        <item name="colorOnSurfaceVariant">@color/light_gray</item>
+        <item name="colorOnSurfaceVariant">@color/gray_border</item>
 
-        <!-- Error -->
-        <item name="colorError">@color/dark_red</item>
-        <item name="colorOnError">@color/white</item>
+        <!-- Error (fallback only; avoid surfacing aggressively) -->
+        <item name="colorError">@color/black</item>
 
-        <!-- UI polish -->
-        <item name="android:statusBarColor">@color/black</item>
-        <item name="android:navigationBarColor">@color/black</item>
+        <!-- System UI -->
+        <item name="android:statusBarColor">@color/blue_900</item>
+        <item name="android:navigationBarColor">@color/blue_900</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
 

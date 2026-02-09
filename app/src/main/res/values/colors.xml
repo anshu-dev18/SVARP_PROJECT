@@ -1,23 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="green">#137A13</color>
-    <color name="soft_green">#68D96E</color>
-    <color name="cream">#F9F3ED</color>
-    <color name="dark_cream">#EDE4DB</color>
-    <color name="deep_blue">#00052A</color>
-    <color name="blue">#0B4697</color>
-    <color name="light_blue">#95C1F8</color>
-    <color name="light_gray">#505050</color>
-    <color name="border_gray">#D6D6D6</color>
-    <color name="disabled_gray">#B0B0B0</color>
-    <color name="soft_yellow">#F3D37A</color>
-    <color name="red">#F20606</color>
-    <color name="gray">#505050</color>
-    <color name="gray_700">#616161</color>
-    <color name="dark_red">#CA0144</color>
-    <color name="overlay_blue">#1F3A5F33</color>
-    <color name="brown">#4E2800</color>
+
+    <!-- Primary background -->
+    <color name="white">#FFFFFF</color>
+
+    <!-- Primary text (use instead of pure black for better readability) -->
+    <color name="charcoal">#1F2933</color>
+
+    <!-- Secondary text / helper text - Updated to #5B616B to pass accessibility contrast ratio (4.5:1) on light backgrounds -->
+    <color name="gray_secondary">#5B616B</color>
+
+    <!-- Borders, dividers, outlines -->
+    <color name="gray_border">#D1D5DB</color>
+
+    <!-- Disabled states (buttons, icons, text) -->
+    <color name="gray_disabled">#9CA3AF</color>
+
+    <!-- Strongest authority blue (top bar, primary CTA, key headers) -->
+    <color name="blue_900">#163A66</color>
+
+    <!-- Primary brand blue (navigation, main actions) -->
+    <color name="blue_800">#1F4E8C</color>
+
+    <!-- Secondary emphasis (secondary CTA, highlights) -->
+    <color name="blue_700">#3F6FB2</color>
+
+    <!-- Guidance / info cards / supportive UI -->
+    <color name="blue_600">#4F7FBF</color>
+
+    <!-- Attention without alarm (status chips, icons, progress) -->
+    <color name="blue_200">#A8C4E8</color>
+
+    <!-- Soft surfaces (card backgrounds, calm sections) -->
+    <color name="blue_100">#E6F0FA</color>
+
+    <!-- Keep only if system-required; avoid using in UI -->
+    <color name="black">#000000</color>
 
 </resources>

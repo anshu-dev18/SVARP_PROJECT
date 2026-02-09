@@ -1,42 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Day theme -->
+    <!-- Base Light Theme -->
     <style name="Base.Theme.SVARP.Day" parent="Theme.Material3.Light.NoActionBar">
 
         <!-- Typography -->
         <item name="fontFamily">@font/noto_sans</item>
 
-        <!-- Primary colors -->
-        <item name="colorPrimary">@color/deep_blue</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryContainer">@color/light_blue</item>
-        <item name="colorOnPrimaryContainer">@color/deep_blue</item>
+        <!-- Primary (Authority / Main actions) -->
+        <item name="colorPrimary">@color/blue_800</item>
+        <item name="colorPrimaryContainer">@color/blue_100</item>
+        <item name="colorOnPrimaryContainer">@color/blue_900</item>
 
-        <!-- Secondary -->
-        <item name="colorSecondary">@color/green</item>
-        <item name="colorOnSecondary">@color/white</item>
-        <item name="colorSecondaryContainer">@color/soft_green</item>
-        <item name="colorOnSecondaryContainer">@color/black</item>
+        <!-- Secondary (Supportive UI, secondary actions) -->
+        <item name="colorSecondary">@color/blue_700</item>
+        <item name="colorSecondaryContainer">@color/blue_200</item>
+        <item name="colorOnSecondaryContainer">@color/blue_900</item>
 
-        <!-- Background & surface -->
-        <item name="android:colorBackground">@color/cream</item>
-        <item name="colorSurface">@color/white</item>
-        <item name="colorOnSurface">@color/black</item>
-        <item name="colorSurfaceVariant">@color/dark_cream</item>
-        <item name="colorOnSurfaceVariant">@color/light_gray</item>
+        <!-- Surfaces & Text -->
+        <item name="colorOnSurface">@color/charcoal</item>
+        <item name="colorSurfaceVariant">@color/blue_100</item>
+        <item name="colorOnSurfaceVariant">@color/gray_secondary</item>
 
-        <!-- Error -->
-        <item name="colorError">@color/red</item>
-        <item name="colorOnError">@color/white</item>
+        <!-- Error (keep default Material error handling or system fallback) -->
+        <item name="colorError">@color/black</item>
 
-        <!-- UI polish -->
-        <item name="android:statusBarColor">@color/cream</item>
-        <item name="android:navigationBarColor">@color/cream</item>
+        <!-- System UI -->
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
 
     </style>
 
+    <!-- App Theme -->
     <style name="Theme.SVARP" parent="Base.Theme.SVARP.Day" />
 
 </resources>
