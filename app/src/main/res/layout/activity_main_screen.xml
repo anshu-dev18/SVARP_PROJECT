@@ -63,7 +63,7 @@
         android:id="@+id/body"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/syncContainer"
+        app:layout_constraintBottom_toTopOf="@id/Divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/navigationBar">
@@ -149,7 +149,7 @@
                 android:id="@+id/symptomsIcon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:contentDescription="@string/select_Symptoms"
+                android:contentDescription="@null"
                 android:src="@drawable/symptoms"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -176,12 +176,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="35dp"
                 android:text="@string/choose_symptoms"
                 android:textColor="@color/charcoal"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/symptomsIcon"
                 app:layout_constraintTop_toBottomOf="@id/head2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -204,7 +202,7 @@
                 android:id="@+id/historyIcon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:contentDescription="@string/med"
+                android:contentDescription="@null"
                 android:src="@drawable/history"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -230,11 +228,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="85dp"
                 android:text="@string/view_history"
                 android:textColor="@color/gray_secondary"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/historyIcon"
                 app:layout_constraintTop_toBottomOf="@id/head4" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -258,7 +254,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="2dp"
-                android:contentDescription="@string/notice"
+                android:contentDescription="@null"
                 android:src="@drawable/info"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -294,27 +290,27 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/syncContainer"
+    <!-- Divider -->
+    <View
+        android:id="@+id/Divider"
         android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:background="@color/blue_100"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/gray_disabled"
+        app:layout_constraintBottom_toTopOf="@+id/sync"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/sync"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sync"
+        android:textColor="@color/charcoal"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/sync"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sync"
-            android:textColor="@color/charcoal"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,9 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.SVARP">
         <activity
+            android:name=".terms"
+            android:exported="false" />
+        <activity
             android:name=".care_guidance"
             android:exported="false" />
         <activity

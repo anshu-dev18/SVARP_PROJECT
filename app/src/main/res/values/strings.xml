@@ -1,21 +1,31 @@
 <resources>
 
-    <!-- App Info & Accessibility Descriptions -->
+    <!-- ========================= -->
+    <!-- App Info & Accessibility -->
+    <!-- ========================= -->
+
     <string name="app_name">SVARP</string>
 
     <string name="description">logo</string>
     <string name="description1">India Flag</string>
-    <string name="description2">Symptoms_img</string>
-    <string name="description3">mic button</string>
+    <string name="description2">Symptoms image</string>
+    <string name="description3">Microphone button</string>
     <string name="description_4">Choose your preferred language for voice and text.</string>
 
+    <!-- ========================= -->
     <!-- Headings / Titles -->
+    <!-- ========================= -->
+
     <string name="heading1">Choose Language</string>
     <string name="heading2">AI Explanation</string>
     <string name="heading3">Chat with SVARP</string>
+    <string name="heading4">Describe your symptoms</string>
+    <string name="heading5">Recommended Action</string>
 
-
+    <!-- ========================= -->
     <!-- General Actions / Buttons -->
+    <!-- ========================= -->
+
     <string name="btn_start">Start</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
@@ -25,15 +35,25 @@
     <string name="btn_send">Send</string>
     <string name="btn_analyze">Analyze</string>
     <string name="btn_refine">Refine Symptoms</string>
-    <string name="get_started">Get Started</string>
+    <string name="btnContinue">Continue</string>
+    <string name="btn_skip">Skip</string>
+    <string name="btnCare">View Care Guidance</string>
+    <string name="btnHome">Back to Home</string>
 
+    <string name="BtnStop_analyze"><![CDATA[Stop & Analyze]]></string>
 
-    <!-- Splash / Home / Main Screen -->
+    <!-- ========================= -->
+    <!-- Splash / Home -->
+    <!-- ========================= -->
+
     <string name="greeting">How Can I Help?</string>
     <string name="talk">Start Voice Chat</string>
+    <string name="subtitle">Reliable health guidance</string>
 
-
+    <!-- ========================= -->
     <!-- Language Selection -->
+    <!-- ========================= -->
+
     <string name="lang_english">English</string>
     <string name="lang_hindi">हिंदी</string>
     <string name="lang_konkani">कोंकणी</string>
@@ -42,10 +62,12 @@
     <string name="lang_telugu">తెలుగు</string>
     <string name="lang_bengali">বাংলা</string>
 
+    <string name="history">Health History</string>
 
-    <!-- Symptom Selection -->
     <string name="select_Symptoms">Select Symptoms</string>
     <string name="tag1">Adding your symptoms helps AI give more accurate results.</string>
+    <string name="tag2">Analysis works entirely on-device</string>
+    <string name="tag3">Select what you are feeling</string>
 
     <string-array name="symptom_list">
         <item>Fever</item>
@@ -56,72 +78,116 @@
         <item>Nausea</item>
     </string-array>
 
-    <!-- Chat / Voice Interaction -->
     <string name="chat_hint">Ask Svarp…</string>
     <string name="mic_icon">Speak symptoms</string>
 
-    <string name="sample_ai_message">
-        Hello, I am SVARP. How can I help you today?
-    </string>
-    <string name="sample_user_message">
-        I have a headache and fever.
-    </string>
 
-    <!-- Medicine Assistant -->
-    <string name="med">Medicine Assistant</string>
-
-    <string name="disclaimer">
-        For educational purposes only. Not a substitute for professional medical advice, diagnosis, or treatment.
-    </string>
-
-
-    <string name="medicine_form">Medicine form *</string>
-    <string name="medicine_name">Medicine name *</string>
-    <string name="strength">Strength (e.g. 500 mg, 10 mg/mL) *</string>
-    <string name="symptoms">Describe your problem / symptoms (optional)</string>
-    <string name="prescribed">Was this medicine prescribed by a doctor?</string>
-    <string name="explanation1">Why this medicine is given</string>
-    <string name="explanation2">What condition it usually treats</string>
-    <string name="explanation3">How your symptoms match</string>
-
-    <!-- Onboarding -->
     <string name="onboarding_H1">Care &amp; Guidance When Needed</string>
     <string name="onboarding_T1">Get clear guidance at home. If needed, we’ll direct you to nearby health care — even without internet.</string>
+
     <string name="onboarding_H2">Talk or Type, Your Way</string>
     <string name="onboarding_T2">Speak or type in your own language. Use the app in the way that feels easiest for you.</string>
+
     <string name="onboarding_H3">Tell Us What You Feel</string>
-    <string name="onboarding_T3">Choose what you are feeling and answer a few questions, We will guide you on what to do next.</string>
-    <string name="dose_tablet">dose_tablet</string>
-    <string name="dose_capsule">dose_capsule</string>
-    <string name="dose_syrup">dose_syrup</string>
-    <string name="dose_injection">dose_injection</string>
-    <string name="dose_other">dose_other</string>
-    <string name="subtitle">Reliable health guidance</string>
-    <string name="btn_skip">Skip</string>
-    <string name="tell_symptoms">Tell me your symptoms for a quick assessment</string>
-    <string name="choose_symptoms">Tap to choose from common signs</string>
-    <string name="notice">Public Health Notice</string>
-    <string name="flu_notice">notice</string>
-    <string name="med_assistance">Know about your Medicine</string>
-    <string name="sync"> Last Sync : 8:22 PM</string>
-    <string name="history">Health History</string>
-    <string name="view_history">View your past assessment</string>
-    <string name="heading4">Describe your symptoms</string>
-    <string name="tag2">Analysis works entirely on-device</string>
-    <string name="tag3">Select what you are feeling</string>
-    <string name="BtnStop_analyze"><![CDATA[Stop & Analyze]]></string>
+    <string name="onboarding_T3">Choose what you are feeling and answer a few questions. We will guide you on what to do next.</string>
+
+
     <string name="assessment">Assessment</string>
-    <string name="btnContinue">Continue</string>
-    <string name="heading5">Recommended Action</string>
     <string name="header">Key Findings</string>
-    <string name="points">• Elevated respiratory rate detected\n• Reported fatigue and muscle soreness\n• Possible viral infection indicators</string>
-    <string name="t1">Rest well untill fever is gone</string>
-    <string name="t2">drink enough water to stay hydrated</string>
-    <string name="t3">Avoid junk foods and packed foods</string>
-    <string name="btnCare">View Care Guidance</string>
-    <string name="btnHome">Back to Home</string>
+
+    <string name="points">
+        • Elevated respiratory rate detected\n
+        • Reported fatigue and muscle soreness\n
+        • Possible viral infection indicators
+    </string>
+
+    <string name="t1">Rest well until fever is gone</string>
+    <string name="t2">Drink enough water to stay hydrated</string>
+    <string name="t3">Avoid junk foods and packaged foods</string>
+
+
     <string name="Setting">Setting</string>
     <string name="about">About</string>
-    <string name="Privacy"><![CDATA[Privacy & Disclaimer]]></string>
+    <string name="Privacy">Privacy &amp; Disclaimer</string>
+
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms">Terms of Service</string>
+    <string name="rate_us">Rate Us</string>
+
+    <string name="appTag">
+        Empowering you to take control of your health journey with simple, intuitive tools for monitoring and improvement.
+    </string>
+
+    <string name="version">Version 2.4.0</string>
+    <string name="rights">© 2026 SVARP Inc. All rights reserved.</string>
+
+
+    <string name="privacy_title">Privacy &amp; Disclaimer</string>
+    <string name="privacy_last_updated">Last updated: January 24, 2026</string>
+
+    <string name="medical_disclaimer_title">Medical Disclaimer</string>
+    <string name="medical_disclaimer_body">
+        This application is for informational purposes only. It does not provide medical advice, diagnosis, or treatment.
+        Always seek the advice of your physician or other qualified health provider with any questions you may have
+        regarding a medical condition.
+    </string>
+
+    <string name="privacy_policy_title">Privacy Policy</string>
+    <string name="privacy_policy_body">
+        We are committed to protecting your personal health information. This policy outlines how we collect, use,
+        and safeguard your data in accordance with HIPAA and GDPR regulations.
+    </string>
+
+    <string name="data_collection"><![CDATA[Data Collection & Usage]]></string>
+
+    <string name="data_collection_intro">
+        We collect information to provide better healthcare insights. This includes:
+    </string>
+
+    <string name="data_collection_list">
+        • Personal identification information (Name, DOB)\n
+        • Health metrics and assessment results\n
+        • Usage data and device information
+    </string>
+
+    <string name="security_measures_title">Security Measures</string>
+    <string name="security_measures_body">
+        Your data is encrypted both in transit and at rest using industry-standard protocols. We utilize multi-factor
+        authentication and strict access controls to ensure your information remains private.
+    </string>
+
+    <string name="contact_us_title">Contact Us</string>
+    <string name="contact_us_body">
+        If you have any questions about this Privacy Policy, please contact us at privacy@SVARP.
+    </string>
+    <string name="sync">Last sync : 8:22 PM</string>
+    <string name="flu_notice">Stay safe from viral Flu</string>
+    <string name="notice">Public Health Notice</string>
+    <string name="view_history">View your past Assessment</string>
+    <string name="choose_symptoms">Tap to choose your current symptoms</string>
+    <string name="tell_symptoms">Tell us your symptoms for quick Assessment</string>
+    <string name="get_started">Get Started</string>
+    <string name="term1">1. Acceptance of Terms</string>
+    <string name="e1">By accessing and using SVARP, you accept and agree to be bound by the terms and provision of this agreement. In addition, when using these particular services, you shall be subject to any posted guidelines or rules applicable to such services.</string>
+    <string name="term2">2. Medical Disclaimer</string>
+    <string name="e2">The content provided in this app is for\ninformational purposes only and is not\nintended as a substitute for professional\nmedical advice, diagnosis, or treatment.\nAlways seek the advice of your\nphysician or other qualified health\nprovider with any questions you may\nhave regarding a medical condition.</string>
+    <string name="term3">3. User Responsibilities</string>
+    <string name="term4">4. Data Privacy</string>
+    <string name="e4">Your use of the app is also governed by\nour Privacy Policy. Please review our\nPrivacy Policy to understand our\npractices regarding your personal\ninformation.</string>
+    <string name="term5">5. Changes to Terms</string>
+    <string name="e5">We reserve the right to modify these\nterms at any time. We will notify you of\nany changes by posting the new Terms\nof Service on this page.</string>
+    <string name="care">Care Guidance</string>
+    <string name="heading6">Local Health Resources</string>
+    <string name="help">24/7 Nurse Line</string>
+    <string name="advice">Direct professional advice</string>
+    <string name="careCenter">Nearest Care Center</string>
+    <string name="distance">0.8 miles away • Open now</string>
+    <string name="subHeading">When to seek ER care</string>
+    <string name="warningHeading">When to seek ER care</string>
+    <string name="warning1">Difficulty breathing or shortness of breath</string>
+    <string name="warning2">Persistent pain or pressure in chest</string>
+    <string name="warning3">New confusion or inability to wake</string>
+    <string name="warning4">Bluish lips or face</string>
+    <string name="assessmentID">Assessment ID: #8829-XJ</string>
 
 </resources>

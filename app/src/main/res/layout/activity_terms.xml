@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_100"
-    tools:context=".privacy">
+    tools:context=".terms">
 
-    <!-- Header -->
+    <!-- Top Navigation -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/headerBar"
+        android:id="@+id/navigationBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -20,13 +20,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/Title"
+            android:id="@+id/header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:text="@string/privacy_title"
+            android:layout_marginStart="24dp"
+            android:text="@string/terms"
             android:textColor="@color/blue_900"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,18 +41,18 @@
         android:background="@color/gray_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerBar" />
+        app:layout_constraintTop_toBottomOf="@id/navigationBar" />
 
-    <!-- Scrollable Content -->
+    <!--Scroll View-->
     <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
+        android:layout_width="391dp"
+        android:layout_height="787dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Divider1">
+        app:layout_constraintTop_toBottomOf="@+id/Divider1">
 
+        <!--Child class-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,54 +69,12 @@
                 android:textColor="@color/gray_secondary"
                 android:textSize="14sp" />
 
-            <!-- Medical Disclaimer Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                app:cardBackgroundColor="#FFF6E0"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="0dp"
-                app:strokeWidth="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:contentDescription="@null"
-                        android:src="@drawable/warning"
-                        app:tint="#8A5A00" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/medical_disclaimer_title"
-                        android:textColor="#8A5A00"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:lineSpacingExtra="4dp"
-                        android:text="@string/medical_disclaimer_body"
-                        android:textColor="#6B4A00"
-                        android:textSize="15sp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Privacy Policy -->
+            <!-- Term 1 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/privacy_policy_title"
+                android:text="@string/term1"
                 android:textColor="@color/blue_900"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -126,43 +84,48 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:lineSpacingExtra="4dp"
-                android:text="@string/privacy_policy_body"
+                android:text="@string/e1"
                 android:textColor="@color/gray_secondary"
                 android:textSize="15sp" />
 
-            <!-- Data Collection -->
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="24dp"
+                android:background="@color/gray_border" />
+
+            <!-- Term 2 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/data_collection"
+                android:text="@string/term2"
                 android:textColor="@color/blue_900"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="@string/data_collection_intro"
-                android:textColor="@color/gray_secondary"
-                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:lineSpacingExtra="6dp"
-                android:text="@string/data_collection_list"
+                android:text="@string/e2"
                 android:textColor="@color/gray_secondary"
                 android:textSize="15sp" />
 
-            <!-- Security -->
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="24dp"
+                android:background="@color/gray_border" />
+
+            <!-- Term 3 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/security_measures_title"
+                android:text="@string/term3"
                 android:textColor="@color/blue_900"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -170,7 +133,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="24dp"
                 android:lineSpacingExtra="4dp"
                 android:text="@string/security_measures_body"
                 android:textColor="@color/gray_secondary"
@@ -183,12 +146,12 @@
                 android:layout_marginBottom="24dp"
                 android:background="@color/gray_border" />
 
-            <!-- Contact -->
+            <!-- Term 4 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/contact_us_title"
+                android:text="@string/term4"
                 android:textColor="@color/blue_900"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -196,11 +159,36 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
                 android:lineSpacingExtra="4dp"
-                android:text="@string/contact_us_body"
+                android:text="@string/e4"
                 android:textColor="@color/gray_secondary"
                 android:textSize="15sp" />
 
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="24dp"
+                android:background="@color/gray_border" />
+
+            <!-- Term 5 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/term5"
+                android:textColor="@color/blue_900"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="@string/e5"
+                android:textColor="@color/gray_secondary"
+                android:textSize="15sp" />
         </LinearLayout>
     </ScrollView>
 
