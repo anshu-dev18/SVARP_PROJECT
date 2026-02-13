@@ -1,6 +1,7 @@
 package com.example.svarp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -13,6 +14,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 public class OnboardingActivity extends AppCompatActivity {
 
+    private static final String PREFS_NAME = "app_prefs";
+    private static final String KEY_ONBOARDING_DONE = "onboarding_done";
     private ViewPager2 viewPager;
     private ConstraintLayout layoutDots;
     private Flow dotsFlow;
@@ -63,19 +66,29 @@ public class OnboardingActivity extends AppCompatActivity {
     }
 
     public void finishOnboarding() {
-        startActivity(new Intent(this, language_selection.class));
+
+        // Mark onboarding as completed
+        SharedPreferences prefs =
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+        prefs.edit()
+                .putBoolean(KEY_ONBOARDING_DONE, true)
+                .apply();
+
+        // Move to language selection
+        Intent intent = new Intent(this, language_selection.class);
+        startActivity(intent);
         finish();
     }
 
     private void setupDots(int count) {
         layoutDots.removeAllViews();
 
-        // Create Flow helper
         dotsFlow = new Flow(this);
         dotsFlow.setId(View.generateViewId());
         dotsFlow.setWrapMode(Flow.WRAP_NONE);
         dotsFlow.setHorizontalStyle(Flow.CHAIN_PACKED);
-        dotsFlow.setHorizontalGap(dpToPx(8));
+        dotsFlow.setHorizontalGap(dpToPx());
 
         ConstraintLayout.LayoutParams flowParams =
                 new ConstraintLayout.LayoutParams(
@@ -86,7 +99,7 @@ public class OnboardingActivity extends AppCompatActivity {
         dotsFlow.setLayoutParams(flowParams);
         layoutDots.addView(dotsFlow);
 
-        int size = dpToPx(8);
+        int size = dpToPx();
         int[] dotIds = new int[count];
 
         for (int i = 0; i < count; i++) {
@@ -109,10 +122,10 @@ public class OnboardingActivity extends AppCompatActivity {
     }
 
     private void updateDots(int currentPage) {
-        for (int i = 0; i < dotsFlow.getReferencedIds().length; i++) {
-            View dot = layoutDots.findViewById(
-                    dotsFlow.getReferencedIds()[i]
-            );
+        int[] ids = dotsFlow.getReferencedIds();
+
+        for (int i = 0; i < ids.length; i++) {
+            View dot = layoutDots.findViewById(ids[i]);
 
             dot.setBackground(
                     ContextCompat.getDrawable(
@@ -125,9 +138,9 @@ public class OnboardingActivity extends AppCompatActivity {
         }
     }
 
-    private int dpToPx(int dp) {
+    private int dpToPx() {
         return Math.round(
-                dp * getResources().getDisplayMetrics().density
+                8 * getResources().getDisplayMetrics().density
         );
     }
 }

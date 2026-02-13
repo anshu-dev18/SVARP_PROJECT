@@ -2,25 +2,39 @@ package com.example.svarp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.google.android.material.button.MaterialButton;
 
+import java.util.Random;
+
 public class Main_Screen extends AppCompatActivity {
+
+    private final String[] notices = {
+            "Stay hydrated today.",
+            "Wash hands frequently.",
+            "Take short breaks from screen.",
+            "Get 7-8 hours sleep.",
+            "Consult doctor if symptoms persist."
+    };
+
+    private boolean doubleBackToExitPressedOnce = false;
+
+    private Handler noticeHandler;
+    private Runnable noticeRunnable;
+    private int lastIndex = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main_screen);
 
         // Views
@@ -28,41 +42,16 @@ public class Main_Screen extends AppCompatActivity {
         ImageView appSetting = findViewById(R.id.appSetting);
         ConstraintLayout cardSymptoms = findViewById(R.id.cardSymptoms);
         ConstraintLayout cardHistory = findViewById(R.id.cardHistory);
+        TextView noticeText = findViewById(R.id.sub5);
 
-        // Match system bars with navigation bar color
-        getWindow().setStatusBarColor(
-                getResources().getColor(R.color.blue_900, getTheme())
-        );
-
-// Optional: also match bottom navigation bar if you want full consistency
-        getWindow().setNavigationBarColor(
-                getResources().getColor(R.color.blue_100, getTheme())
-        );
-
-// Correct icon contrast (light background → dark icons)
-        WindowInsetsControllerCompat controller =
-                ViewCompat.getWindowInsetsController(getWindow().getDecorView());
-
-        if (controller != null) {
-            controller.setAppearanceLightStatusBars(true);
-            controller.setAppearanceLightNavigationBars(true);
-        }
-        View root = findViewById(android.R.id.content);
-        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(
-                    systemBars.left,
-                    systemBars.top,
-                    systemBars.right,
-                    systemBars.bottom
-            );
-            return insets;
-        });
-
+        // -------------------------
         // Navigation
+        // -------------------------
+
         btnMic.setOnClickListener(v ->
                 startActivity(new Intent(this, TalkToSvarp.class))
         );
+
         appSetting.setOnClickListener(v ->
                 startActivity(new Intent(this, setting.class))
         );
@@ -74,5 +63,63 @@ public class Main_Screen extends AppCompatActivity {
         cardHistory.setOnClickListener(v ->
                 startActivity(new Intent(this, history.class))
         );
+
+        // -------------------------
+        // Random Notice Logic
+        // -------------------------
+
+        noticeHandler = new Handler(Looper.getMainLooper());
+
+        noticeRunnable = new Runnable() {
+            @Override
+            public void run() {
+
+                int randomIndex;
+
+                do {
+                    randomIndex = new Random().nextInt(notices.length);
+                } while (randomIndex == lastIndex);
+
+                lastIndex = randomIndex;
+                noticeText.setText(notices[randomIndex]);
+
+                noticeHandler.postDelayed(this, 5000);
+            }
+        };
+
+        noticeHandler.post(noticeRunnable);
+
+        // -------------------------
+        // Double Back To Exit (Modern)
+        // -------------------------
+
+        getOnBackPressedDispatcher().addCallback(this,
+                new OnBackPressedCallback(true) {
+                    @Override
+                    public void handleOnBackPressed() {
+
+                        if (doubleBackToExitPressedOnce) {
+                            finish();
+                        } else {
+                            doubleBackToExitPressedOnce = true;
+                            Toast.makeText(Main_Screen.this,
+                                    "Press back again to exit",
+                                    Toast.LENGTH_SHORT).show();
+
+                            new Handler(Looper.getMainLooper()).postDelayed(
+                                    () -> doubleBackToExitPressedOnce = false,
+                                    2000
+                            );
+                        }
+                    }
+                });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (noticeHandler != null && noticeRunnable != null) {
+            noticeHandler.removeCallbacks(noticeRunnable);
+        }
     }
 }

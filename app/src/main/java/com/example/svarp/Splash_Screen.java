@@ -16,6 +16,9 @@ public class Splash_Screen extends AppCompatActivity {
     private static final String KEY_ONBOARDING_DONE = "onboarding_done";
     private static final String KEY_LANGUAGE = "selected_language";
 
+    private Handler handler;
+    private Runnable splashRunnable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,9 @@ public class Splash_Screen extends AppCompatActivity {
         String selectedLanguage =
                 prefs.getString(KEY_LANGUAGE, null);
 
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+        handler = new Handler(Looper.getMainLooper());
+
+        splashRunnable = () -> {
 
             Intent intent;
 
@@ -50,7 +55,16 @@ public class Splash_Screen extends AppCompatActivity {
 
             startActivity(intent);
             finish();
+        };
 
-        }, SPLASH_DELAY_MS);
+        handler.postDelayed(splashRunnable, SPLASH_DELAY_MS);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (handler != null && splashRunnable != null) {
+            handler.removeCallbacks(splashRunnable);
+        }
     }
 }

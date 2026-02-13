@@ -1,10 +1,10 @@
 package com.example.svarp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,7 +20,6 @@ public class Select_Symptoms extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_select_symptoms);
 
         btn_report = findViewById(R.id.btn_report);
@@ -82,7 +81,7 @@ public class Select_Symptoms extends AppCompatActivity {
                 new GridLayoutManager(this, GRID_SPAN_COUNT)
         );
 
-        SymptomAdapter adapter = new SymptomAdapter(
+        @SuppressLint("SetTextI18n") SymptomAdapter adapter = new SymptomAdapter(
                 symptoms,
                 icons,
                 selectedCount -> {

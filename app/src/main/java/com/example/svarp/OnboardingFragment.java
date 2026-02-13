@@ -43,7 +43,15 @@ public class OnboardingFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState
     ) {
-        View view = inflater.inflate(R.layout.fragment_onboarding, container, false);
+        return inflater.inflate(R.layout.fragment_onboarding, container, false);
+    }
+
+    @Override
+    public void onViewCreated(
+            @NonNull View view,
+            @Nullable Bundle savedInstanceState
+    ) {
+        super.onViewCreated(view, savedInstanceState);
 
         ImageView icon = view.findViewById(R.id.imgIcon);
         TextView heading = view.findViewById(R.id.txtHeading);
@@ -51,12 +59,7 @@ public class OnboardingFragment extends Fragment {
         Button skip = view.findViewById(R.id.btnSkip);
         Button next = view.findViewById(R.id.btnNext);
 
-        Bundle args = getArguments();
-        if (args == null) {
-            throw new IllegalStateException(
-                    "OnboardingFragment must be created via newInstance()"
-            );
-        }
+        Bundle args = requireArguments();
 
         boolean isLast = args.getBoolean(ARG_LAST, false);
 
@@ -64,10 +67,8 @@ public class OnboardingFragment extends Fragment {
         heading.setText(args.getInt(ARG_HEADING));
         tagline.setText(args.getInt(ARG_TAGLINE));
 
-        OnboardingActivity host = getHostActivity();
-        if (host == null) {
-            return view; // Fragment detached or invalid host
-        }
+        OnboardingActivity host =
+                (OnboardingActivity) requireActivity();
 
         if (isLast) {
             skip.setVisibility(View.GONE);
@@ -83,15 +84,5 @@ public class OnboardingFragment extends Fragment {
                 host.nextPage();
             }
         });
-
-        return view;
-    }
-
-    @Nullable
-    private OnboardingActivity getHostActivity() {
-        if (getActivity() instanceof OnboardingActivity) {
-            return (OnboardingActivity) getActivity();
-        }
-        return null;
     }
 }

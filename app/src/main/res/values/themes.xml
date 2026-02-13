@@ -7,31 +7,41 @@
         <!-- Typography -->
         <item name="fontFamily">@font/noto_sans</item>
 
-        <!-- Primary (Authority / Main actions) -->
+        <!-- Primary -->
         <item name="colorPrimary">@color/blue_800</item>
         <item name="colorPrimaryContainer">@color/blue_100</item>
         <item name="colorOnPrimaryContainer">@color/blue_900</item>
 
-        <!-- Secondary (Supportive UI, secondary actions) -->
+        <!-- Secondary -->
         <item name="colorSecondary">@color/blue_700</item>
         <item name="colorSecondaryContainer">@color/blue_200</item>
         <item name="colorOnSecondaryContainer">@color/blue_900</item>
 
-        <!-- Surfaces & Text -->
+        <!-- Surfaces -->
+        <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">@color/charcoal</item>
         <item name="colorSurfaceVariant">@color/blue_100</item>
         <item name="colorOnSurfaceVariant">@color/gray_secondary</item>
 
-        <!-- Error (keep default Material error handling or system fallback) -->
+        <!-- Error -->
         <item name="colorError">@color/black</item>
 
-        <!-- System UI -->
-        <item name="android:windowLightStatusBar">true</item>
+        <!-- Status Bar -->
+        <item name="android:statusBarColor">@color/blue_900</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Navigation Bar -->
         <item name="android:windowLightNavigationBar">true</item>
 
     </style>
 
     <!-- App Theme -->
     <style name="Theme.SVARP" parent="Base.Theme.SVARP.Day" />
+
+    <!-- Splash Theme -->
+    <style name="SplashTheme" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:windowBackground">@color/blue_900</item>
+        <item name="android:statusBarColor">@color/blue_900</item>
+    </style>
 
 </resources>

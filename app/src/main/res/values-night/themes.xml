@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Night theme -->
     <style name="Base.Theme.SVARP.Night" parent="Theme.Material3.Dark.NoActionBar">
 
         <!-- Typography -->
         <item name="fontFamily">@font/noto_sans</item>
 
-        <!-- Primary (still brand-led, not flashy) -->
+        <!-- Primary -->
         <item name="colorPrimary">@color/blue_700</item>
-        <item name="colorOnPrimary">@color/charcoal</item>
+        <item name="colorOnPrimary">@color/white</item>
         <item name="colorPrimaryContainer">@color/blue_900</item>
         <item name="colorOnPrimaryContainer">@color/white</item>
 
-        <!-- Secondary (supportive emphasis) -->
+        <!-- Secondary -->
         <item name="colorSecondary">@color/blue_600</item>
         <item name="colorSecondaryContainer">@color/blue_900</item>
         <item name="colorOnSecondaryContainer">@color/white</item>
 
-        <!-- Background & Surface -->
+        <!-- Background & Surfaces -->
         <item name="android:colorBackground">@color/blue_900</item>
         <item name="colorSurface">@color/blue_900</item>
         <item name="colorSurfaceVariant">@color/blue_800</item>
 
-        <!-- Text on surfaces -->
+        <!-- Text -->
         <item name="colorOnSurface">@color/white</item>
         <item name="colorOnSurfaceVariant">@color/gray_border</item>
 
-        <!-- Error (fallback only; avoid surfacing aggressively) -->
-        <item name="colorError">@color/black</item>
+        <!-- Error (Material Dark recommended tone) -->
+        <item name="colorError">#CF6679</item>
 
         <!-- System UI -->
         <item name="android:statusBarColor">@color/blue_900</item>
@@ -37,5 +36,8 @@
         <item name="android:windowLightNavigationBar">false</item>
 
     </style>
+
+    <!-- App Theme Mapping -->
+    <style name="Theme.SVARP" parent="Base.Theme.SVARP.Night" />
 
 </resources>

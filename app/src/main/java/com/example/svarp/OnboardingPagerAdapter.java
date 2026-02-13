@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class OnboardingPagerAdapter extends FragmentStateAdapter {
 
-    private static final Page[] PAGES = new Page[]{
+    private static final Page[] PAGES = {
             new Page(
                     R.drawable.medical,
                     R.string.onboarding_H1,
@@ -32,9 +32,10 @@ public class OnboardingPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        if (position < 0 || position >= PAGES.length) {
-            throw new IllegalStateException(
-                    "Invalid onboarding page index: " + position
+
+        if (position >= PAGES.length) {
+            throw new IndexOutOfBoundsException(
+                    "Onboarding page index out of range: " + position
             );
         }
 
@@ -54,6 +55,9 @@ public class OnboardingPagerAdapter extends FragmentStateAdapter {
         return PAGES.length;
     }
 
+    /**
+     * Immutable onboarding page model.
+     */
     private static final class Page {
         final int imageRes;
         final int headingRes;
@@ -66,3 +70,4 @@ public class OnboardingPagerAdapter extends FragmentStateAdapter {
         }
     }
 }
+
