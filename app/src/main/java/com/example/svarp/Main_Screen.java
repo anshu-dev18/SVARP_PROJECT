@@ -25,7 +25,6 @@ public class Main_Screen extends AppCompatActivity {
             "Get 7-8 hours sleep.",
             "Consult doctor if symptoms persist."
     };
-
     private boolean doubleBackToExitPressedOnce = false;
 
     private Handler noticeHandler;
@@ -75,7 +74,6 @@ public class Main_Screen extends AppCompatActivity {
             public void run() {
 
                 int randomIndex;
-
                 do {
                     randomIndex = new Random().nextInt(notices.length);
                 } while (randomIndex == lastIndex);
