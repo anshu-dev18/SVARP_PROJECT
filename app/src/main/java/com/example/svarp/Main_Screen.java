@@ -6,6 +6,8 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -87,68 +89,73 @@ public class Main_Screen extends AppCompatActivity {
 
         reminderPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
-        btnMic = findViewById(R.id.btn_mic);
-        ImageView appSetting = findViewById(R.id.appSetting);
+        // ── Find views ────────────────────────────────────────────────────────────
+        btnMic        = findViewById(R.id.btn_mic);
+        ImageView appSetting          = findViewById(R.id.appSetting);
         ConstraintLayout cardSymptoms = findViewById(R.id.cardSymptoms);
+        toggle        = findViewById(R.id.toggle);
+        txtTime       = findViewById(R.id.time);
+        head1         = findViewById(R.id.head1);
+        sub1          = findViewById(R.id.sub1);
+        head2         = findViewById(R.id.head2);
+        sub2          = findViewById(R.id.sub2);
+        head5         = findViewById(R.id.head5);
+        sub5          = findViewById(R.id.sub5);
+        syncText      = findViewById(R.id.sync);
 
-        toggle = findViewById(R.id.toggle);
-        txtTime = findViewById(R.id.time);
+        // ── Request notification permission (Android 13+) ────────────────────────
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(
+                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1);
+            }
+        }
 
-        head1 = findViewById(R.id.head1);
-        sub1 = findViewById(R.id.sub1);
-        head2 = findViewById(R.id.head2);
-        sub2 = findViewById(R.id.sub2);
-        head5 = findViewById(R.id.head5);
-        sub5 = findViewById(R.id.sub5);
-        syncText = findViewById(R.id.sync);
-
+        // ── Restore saved time ────────────────────────────────────────────────────
         txtTime.setText(formatTime(
                 reminderPrefs.getInt(KEY_HOUR, 8),
                 reminderPrefs.getInt(KEY_MINUTE, 0)));
 
         toggle.setChecked(reminderPrefs.getBoolean(KEY_TOGGLE, false));
 
+        // ── Toggle listener ───────────────────────────────────────────────────────
         toggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
-
             reminderPrefs.edit().putBoolean(KEY_TOGGLE, isChecked).apply();
-
             if (isChecked) {
-
                 scheduleReminder(
                         reminderPrefs.getInt(KEY_HOUR, 8),
-                        reminderPrefs.getInt(KEY_MINUTE, 0)
-                );
-
-                Toast.makeText(this, "Reminder Enabled", Toast.LENGTH_SHORT).show();
-
+                        reminderPrefs.getInt(KEY_MINUTE, 0));
+                boolean isHindi = isHindiSelected();
+                Toast.makeText(this,
+                        isHindi ? "रिमाइंडर चालू किया गया" : "Reminder Enabled",
+                        Toast.LENGTH_SHORT).show();
             } else {
-
                 cancelReminder();
-                Toast.makeText(this, "Reminder Disabled", Toast.LENGTH_SHORT).show();
+                boolean isHindi = isHindiSelected();
+                Toast.makeText(this,
+                        isHindi ? "रिमाइंडर बंद किया गया" : "Reminder Disabled",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
+        // ── Time picker ───────────────────────────────────────────────────────────
         txtTime.setOnClickListener(v -> {
-
             int h = reminderPrefs.getInt(KEY_HOUR, 8);
             int m = reminderPrefs.getInt(KEY_MINUTE, 0);
-
             new TimePickerDialog(this, (view, hourOfDay, minute1) -> {
-
                 reminderPrefs.edit()
                         .putInt(KEY_HOUR, hourOfDay)
                         .putInt(KEY_MINUTE, minute1)
                         .apply();
-
                 txtTime.setText(formatTime(hourOfDay, minute1));
-
                 if (toggle.isChecked()) {
                     scheduleReminder(hourOfDay, minute1);
                 }
-
             }, h, m, false).show();
         });
 
+        // ── Navigation ────────────────────────────────────────────────────────────
         btnMic.setOnClickListener(v ->
                 startActivity(new Intent(this, TalkToSvarp.class)));
 
@@ -158,6 +165,7 @@ public class Main_Screen extends AppCompatActivity {
         cardSymptoms.setOnClickListener(v ->
                 startActivity(new Intent(this, Select_Symptoms.class)));
 
+        // ── Double back to exit ───────────────────────────────────────────────────
         getOnBackPressedDispatcher().addCallback(this,
                 new OnBackPressedCallback(true) {
                     @Override
@@ -178,10 +186,10 @@ public class Main_Screen extends AppCompatActivity {
                 });
     }
 
-    // ── Start notices when screen visible
     @Override
     protected void onResume() {
         super.onResume();
+        applyLanguage();
         startNoticeRotation();
     }
 
@@ -191,19 +199,19 @@ public class Main_Screen extends AppCompatActivity {
         stopNoticeRotation();
     }
 
-    // ── Notification scheduling
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopNoticeRotation();
+    }
+
+    // ── Schedule exact daily alarm ────────────────────────────────────────────────
     private void scheduleReminder(int hour, int minute) {
-
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
         Intent intent = new Intent(this, ReminderReceiver.class);
-
         PendingIntent pi = PendingIntent.getBroadcast(
-                this,
-                0,
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
-        );
+                this, 0, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.HOUR_OF_DAY, hour);
@@ -214,40 +222,36 @@ public class Main_Screen extends AppCompatActivity {
             cal.add(Calendar.DAY_OF_YEAR, 1);
         }
 
-        am.setRepeating(
-                AlarmManager.RTC_WAKEUP,
-                cal.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY,
-                pi
-        );
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (am.canScheduleExactAlarms()) {
+                am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pi);
+            } else {
+                am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pi);
+            }
+        } else {
+            am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pi);
+        }
     }
 
+    // ── Cancel alarm ──────────────────────────────────────────────────────────────
     private void cancelReminder() {
-
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
         Intent intent = new Intent(this, ReminderReceiver.class);
-
         PendingIntent pi = PendingIntent.getBroadcast(
-                this,
-                0,
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
-        );
-
+                this, 0, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         am.cancel(pi);
     }
 
+    // ── Format time to 12hr string ────────────────────────────────────────────────
     private String formatTime(int hour, int minute) {
-
         String period = hour >= 12 ? "PM" : "AM";
-
         int h12 = hour % 12;
         if (h12 == 0) h12 = 12;
-
         return String.format("%02d:%02d %s", h12, minute, period);
     }
 
+    // ── Read language preference ──────────────────────────────────────────────────
     private boolean isHindiSelected() {
         SharedPreferences prefs = getSharedPreferences(
                 LanguageAdapter.PREFS_NAME, MODE_PRIVATE);
@@ -255,39 +259,54 @@ public class Main_Screen extends AppCompatActivity {
                 prefs.getString(LanguageAdapter.KEY_LANGUAGE, LanguageAdapter.LANG_ENGLISH));
     }
 
-    // ── Notice rotation
+    // ── Apply language to all visible text ───────────────────────────────────────
+    private void applyLanguage() {
+        boolean isHindi = isHindiSelected();
+        if (isHindi) {
+            head1.setText("मैं कैसे मदद कर सकता हूँ?");
+            sub1.setText("जल्दी आकलन के लिए अपने लक्षण बताएं");
+            btnMic.setText("वॉइस चैट शुरू करें");
+            head2.setText("लक्षण चुनें");
+            sub2.setText("अपने मौजूदा लक्षण चुनने के लिए टैप करें");
+            head5.setText("सार्वजनिक स्वास्थ्य सूचना");
+            syncText.setText("अंतिम सिंक: 8:22 PM");
+        } else {
+            head1.setText(getString(R.string.greeting));
+            sub1.setText(getString(R.string.tell_symptoms));
+            btnMic.setText(getString(R.string.talk));
+            head2.setText(getString(R.string.select_Symptoms));
+            sub2.setText(getString(R.string.choose_symptoms));
+            head5.setText(getString(R.string.notice));
+            syncText.setText(getString(R.string.sync));
+        }
+    }
+
+    // ── Notice rotation ───────────────────────────────────────────────────────────
     private void startNoticeRotation() {
-
         stopNoticeRotation();
-
         noticeHandler = new Handler(Looper.getMainLooper());
-
         noticeRunnable = new Runnable() {
             @Override
             public void run() {
-
                 boolean isHindi = isHindiSelected();
                 String[] notices = isHindi ? noticesHi : noticesEn;
-
                 int randomIndex;
                 do {
                     randomIndex = new Random().nextInt(notices.length);
                 } while (randomIndex == lastIndex);
-
                 lastIndex = randomIndex;
-
                 sub5.setText(notices[randomIndex]);
-
                 noticeHandler.postDelayed(this, 5000);
             }
         };
-
         noticeHandler.post(noticeRunnable);
     }
 
     private void stopNoticeRotation() {
         if (noticeHandler != null && noticeRunnable != null) {
             noticeHandler.removeCallbacks(noticeRunnable);
+            noticeHandler = null;
+            noticeRunnable = null;
         }
     }
 }

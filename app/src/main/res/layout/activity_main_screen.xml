@@ -222,7 +222,7 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/bell"
+                    android:src="@drawable/info"
                     android:contentDescription="@null"
                     app:tint="@color/blue_900" />
             </androidx.cardview.widget.CardView>
@@ -307,7 +307,7 @@
                             android:layout_width="22dp"
                             android:layout_height="22dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/clock"
+                            android:src="@drawable/info"
                             android:contentDescription="@null"
                             app:tint="@color/blue_900" />
                     </androidx.cardview.widget.CardView>
