@@ -94,62 +94,19 @@ public class TalkToSvarp extends AppCompatActivity {
 
         btnStop.setOnClickListener(v -> {
             stopListening();
-
-            String spoken = transcript.getText().toString().toLowerCase();
-            ArrayList<String> detectedSymptoms = new ArrayList<>();
-
-            if (spoken.contains("fever") || spoken.contains("बुखार")) detectedSymptoms.add("Fever");
-            if (spoken.contains("cough") || spoken.contains("खांसी")) detectedSymptoms.add("Cough");
-            if (spoken.contains("headache") || spoken.contains("सिरदर्द"))
-                detectedSymptoms.add("Headache");
-            if (spoken.contains("fatigue") || spoken.contains("tired") || spoken.contains("थकान"))
-                detectedSymptoms.add("Fatigue");
-            if (spoken.contains("sore throat") || spoken.contains("throat") || spoken.contains("गले"))
-                detectedSymptoms.add("Sore Throat");
-            if (spoken.contains("vomit") || spoken.contains("उल्टी"))
-                detectedSymptoms.add("Vomiting");
-            if (spoken.contains("body ache") || spoken.contains("muscle") || spoken.contains("बदन दर्द"))
-                detectedSymptoms.add("Body Ache");
-            if (spoken.contains("dizzy") || spoken.contains("dizziness") || spoken.contains("चक्कर"))
-                detectedSymptoms.add("Dizziness");
-            if (spoken.contains("rash") || spoken.contains("चकत्ते"))
-                detectedSymptoms.add("Skin Rash");
-            if (spoken.contains("eye") || spoken.contains("आँख"))
-                detectedSymptoms.add("Eye Discomfort");
-            if (spoken.contains("tooth") || spoken.contains("दांत"))
-                detectedSymptoms.add("Toothache");
-            if (spoken.contains("chest") || spoken.contains("सीने"))
-                detectedSymptoms.add("Chest Pain");
-            if (spoken.contains("breath") || spoken.contains("breathing") || spoken.contains("सांस"))
-                detectedSymptoms.add("Shortness of Breath");
-            if (spoken.contains("nausea") || spoken.contains("nauseous") || spoken.contains("जी मिचलाना"))
-                detectedSymptoms.add("Nausea");
-            if (spoken.contains("weak") || spoken.contains("weakness") || spoken.contains("कमज़ोरी"))
-                detectedSymptoms.add("Weakness");
-            if (spoken.contains("weight loss") || spoken.contains("वज़न"))
-                detectedSymptoms.add("Weight Loss");
-            if (spoken.contains("blood in stool") || spoken.contains("मल में खून"))
-                detectedSymptoms.add("Blood in Stool");
-            if (spoken.contains("blood in urine") || spoken.contains("पेशाब में खून"))
-                detectedSymptoms.add("Blood in Urine");
-            if (spoken.contains("diarrhea") || spoken.contains("loose") || spoken.contains("दस्त"))
-                detectedSymptoms.add("Diarrhea");
-            if (spoken.contains("stomach") || spoken.contains("abdomen") || spoken.contains("पेट"))
-                detectedSymptoms.add("Stomach Ache");
-
             Intent intent = new Intent(TalkToSvarp.this, assessment_res.class);
-            intent.putStringArrayListExtra("selected_symptoms", detectedSymptoms);
+            intent.putExtra("voice_text", transcript.getText().toString());
             startActivity(intent);
         });
 
         btnClose.setOnClickListener(v -> finish());
     }
 
-    @SuppressLint("SetTextI18n")
     private void startListening() {
         if (isListening) return;
 
         isListening = true;
+        // ✅ getString() returns correct language automatically
         heading.setText(getString(R.string.listening));
         transcript.setVisibility(View.VISIBLE);
         btnStop.setVisibility(View.VISIBLE);
@@ -167,15 +124,7 @@ public class TalkToSvarp extends AppCompatActivity {
         speechRecognizer.stopListening();
     }
 
-    private String detectLanguage(String text) {
-        for (char c : text.toCharArray()) {
-            if (Character.UnicodeBlock.of(c) == Character.UnicodeBlock.DEVANAGARI) {
-                return "hindi";
-            }
-        }
-        return "english";
-    }
-
+    @SuppressLint("SetTextI18n")
     private void updateTranscript(Bundle bundle) {
         ArrayList<String> results =
                 bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
@@ -184,20 +133,24 @@ public class TalkToSvarp extends AppCompatActivity {
             String spokenText = results.get(0);
             transcript.setText(spokenText);
 
-            String language = detectLanguage(spokenText);
+            // ✅ Locale-aware engine — no manual language detection needed
+            boolean isHindi = getString(R.string.urgent_prefix).contains("ज़रूरी");
+            HealthDecisionEngine engine = new HealthDecisionEngine(isHindi);
 
-            if (language.equals("hindi")) {
-                helper.setText("बोलते रहें — जब हो जाए तो Stop दबाएं");
-            } else {
-                helper.setText("Keep speaking — press Stop when you're done");
-            }
+            HealthDecisionEngine.HealthAssessment assessment =
+                    engine.analyzeInput(spokenText, new ArrayList<>());
+
+            // ✅ getString() handles Hindi/English automatically
+            helper.setText(
+                    getString(R.string.condition_prefix) + assessment.condition +
+                            "\n" + getString(R.string.advice_prefix) + assessment.explanation
+            );
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         if (speechRecognizer != null) {
             speechRecognizer.destroy();
         }
