@@ -103,12 +103,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="109dp"
             android:text="@string/help"
             android:textColor="@color/blue_900"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/call"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -222,28 +220,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Head2">
 
-        <!-- Title -->
-        <TextView
-            android:id="@+id/heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/warningHeading"
-            android:textColor="#8B0000"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <!-- Item 1 Icon -->
         <ImageView
             android:id="@+id/icon1"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:contentDescription="@null"
             android:src="@drawable/error"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/heading"
+            app:layout_constraintTop_toTopOf="parent"
             app:tint="#D32F2F" />
 
         <!-- Item 1 Text -->
@@ -252,7 +238,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="@string/warning1"
+            android:text="@null"
             android:textColor="#B71C1C"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -278,7 +264,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="@string/warning2"
+            android:text="@null"
             android:textColor="#B71C1C"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -304,7 +290,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="@string/warning3"
+            android:text="@null"
             android:textColor="#B71C1C"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -318,10 +304,12 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="12dp"
+            android:layout_marginBottom="20dp"
             android:contentDescription="@null"
             android:src="@drawable/error"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text3"
+            app:layout_constraintTop_toBottomOf="@+id/icon3"
             app:tint="#D32F2F" />
 
         <!-- Item 4 Text -->
@@ -331,7 +319,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginBottom="4dp"
-            android:text="@string/warning4"
+            android:text="@null"
             android:textColor="#B71C1C"
             android:textSize="14sp"
             android:textStyle="bold"

@@ -2,7 +2,6 @@ package com.example.svarp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,25 +28,24 @@ public class assessment_res extends AppCompatActivity {
         initViews();
         setupNavigation();
 
-        // Both paths read selected_symptoms; voice path additionally reads voice_text
         String voiceInput = getIntent().getStringExtra("voice_text");
-        ArrayList<String> selectedSymptomNames = getIntent().getStringArrayListExtra("selected_symptoms");
+        ArrayList<String> selectedSymptoms = getIntent().getStringArrayListExtra("selected_symptoms");
 
-        runAssessment(voiceInput, selectedSymptomNames);
+        runAssessment(voiceInput, selectedSymptoms);
     }
 
     private void initViews() {
-        txtKeyTitle    = findViewById(R.id.txtKeyTitle);
+        txtKeyTitle = findViewById(R.id.txtKeyTitle);
         txtKeyFindings = findViewById(R.id.txtKeyFindings);
-        actionText1    = findViewById(R.id.actionText1);
-        actionText2    = findViewById(R.id.actionText2);
-        actionText3    = findViewById(R.id.actionText3);
-        riskRecycler   = findViewById(R.id.riskLevel);
+        actionText1 = findViewById(R.id.actionText1);
+        actionText2 = findViewById(R.id.actionText2);
+        actionText3 = findViewById(R.id.actionText3);
+        riskRecycler = findViewById(R.id.riskLevel);
     }
 
     private void setupNavigation() {
-        Button btnHome    = findViewById(R.id.btnHome);
-        Button btnCare    = findViewById(R.id.btnCare);
+        Button btnHome = findViewById(R.id.btnHome);
+        Button btnCare = findViewById(R.id.btnCare);
         ImageView btnBack = findViewById(R.id.btnBack);
 
         btnHome.setOnClickListener(v -> {
@@ -56,100 +54,107 @@ public class assessment_res extends AppCompatActivity {
             startActivity(intent);
         });
 
-        btnCare.setOnClickListener(v ->
-        {
-            ArrayList<String> selectedSymptoms =
-                    getIntent().getStringArrayListExtra("selected_symptoms");
-
+        btnCare.setOnClickListener(v -> {
             Intent intent = new Intent(this, care_guidance.class);
-            intent.putStringArrayListExtra("selected_symptoms", selectedSymptoms);
+            intent.putStringArrayListExtra("selected_symptoms",
+                    getIntent().getStringArrayListExtra("selected_symptoms"));
             startActivity(intent);
-
         });
 
-        btnBack.setOnClickListener(v -> onBackPressed());
+        btnBack.setOnClickListener(v -> finish());
     }
 
-    /**
-     * Decides which engine entry point to use:
-     *
-     *   Voice path  — voiceInput is non-empty (transcribed speech from mic).
-     *                 Calls analyzeInput(String, List<String>) so the engine can
-     *                 run emergency-keyword checks, meningitis/anaphylaxis combos,
-     *                 Hindi transliteration matching, etc.
-     *
-     *   UI path     — voiceInput is null/empty (user tapped symptom checkboxes).
-     *                 Converts symptom name strings → Symptom enums and calls
-     *                 analyzeInput(List<Symptom>) for the full bilingual response tree.
-     *
-     * Language is always read from SharedPreferences so both paths respect the
-     * language the user chose in settings.
-     */
     private void runAssessment(String voiceInput, ArrayList<String> selectedSymptomNames) {
-        // Read saved language preference
-        SharedPreferences prefs = getSharedPreferences(LanguageAdapter.PREFS_NAME, MODE_PRIVATE);
-        String lang    = prefs.getString(LanguageAdapter.KEY_LANGUAGE, LanguageAdapter.LANG_ENGLISH);
-        boolean isHindi = LanguageAdapter.LANG_HINDI.equals(lang);
+
+        // ✅ Android locale handles getString() automatically — no SharedPreferences needed
+        boolean isHindi = getString(R.string.urgent_prefix).contains("ज़रूरी");
 
         HealthDecisionEngine engine = new HealthDecisionEngine(isHindi);
         HealthDecisionEngine.HealthAssessment result;
 
-        boolean hasVoiceInput = voiceInput != null && !voiceInput.trim().isEmpty();
-
-        if (hasVoiceInput) {
-            // ── Voice path ─────────────────────────────────────────────────────
-            // Pass raw transcribed text + any string symptom labels that were
-            // also selected; the engine handles keyword matching internally.
-            List<String> symptoms = (selectedSymptomNames != null)
-                    ? selectedSymptomNames : new ArrayList<>();
+        if (voiceInput != null && !voiceInput.trim().isEmpty()) {
+            List<String> symptoms = selectedSymptomNames != null ? selectedSymptomNames : new ArrayList<>();
             result = engine.analyzeInput(voiceInput, symptoms);
         } else {
-            // ── UI / enum path ─────────────────────────────────────────────────
-            // Convert symptom name strings to enums, then run the full
-            // bilingual decision tree.
-            List<HealthDecisionEngine.Symptom> symptoms = convertToSymptoms(selectedSymptomNames);
-            result = engine.analyzeInput(symptoms);
+            result = engine.analyzeInput(convertToSymptoms(selectedSymptomNames));
         }
 
         updateRiskLevel(result.riskLevel);
-        updateKeyFindings(result, isHindi);
+        updateKeyFindings(result);
         updateActionSteps(result.actionSteps);
     }
 
-    /**
-     * Maps symptom name strings (from the UI checkbox list) to Symptom enums.
-     * Handles common aliases so the UI labels don't have to match enum names exactly.
-     */
     private List<HealthDecisionEngine.Symptom> convertToSymptoms(ArrayList<String> names) {
         List<HealthDecisionEngine.Symptom> symptoms = new ArrayList<>();
         if (names == null) return symptoms;
 
         for (String name : names) {
             switch (name.toLowerCase().trim()) {
-                case "fever":                        symptoms.add(HealthDecisionEngine.Symptom.FEVER);               break;
-                case "cough":                        symptoms.add(HealthDecisionEngine.Symptom.COUGH);               break;
-                case "headache":                     symptoms.add(HealthDecisionEngine.Symptom.HEADACHE);            break;
-                case "fatigue":                      symptoms.add(HealthDecisionEngine.Symptom.FATIGUE);             break;
-                case "sore throat":                  symptoms.add(HealthDecisionEngine.Symptom.SORE_THROAT);         break;
-                case "vomiting": case "vomit":       symptoms.add(HealthDecisionEngine.Symptom.VOMITING);            break;
-                case "body ache":                    symptoms.add(HealthDecisionEngine.Symptom.BODY_ACHE);           break;
-                case "dizziness":                    symptoms.add(HealthDecisionEngine.Symptom.DIZZINESS);           break;
-                case "skin rash":                    symptoms.add(HealthDecisionEngine.Symptom.SKIN_RASH);           break;
-                case "eye discomfort":               symptoms.add(HealthDecisionEngine.Symptom.EYE_DISCOMFORT);      break;
-                case "toothache":                    symptoms.add(HealthDecisionEngine.Symptom.TOOTHACHE);           break;
-                case "chest pain":                   symptoms.add(HealthDecisionEngine.Symptom.CHEST_PAIN);          break;
+                case "fever":
+                    symptoms.add(HealthDecisionEngine.Symptom.FEVER);
+                    break;
+                case "cough":
+                    symptoms.add(HealthDecisionEngine.Symptom.COUGH);
+                    break;
+                case "headache":
+                    symptoms.add(HealthDecisionEngine.Symptom.HEADACHE);
+                    break;
+                case "fatigue":
+                    symptoms.add(HealthDecisionEngine.Symptom.FATIGUE);
+                    break;
+                case "sore throat":
+                    symptoms.add(HealthDecisionEngine.Symptom.SORE_THROAT);
+                    break;
+                case "vomiting":
+                case "vomit":
+                    symptoms.add(HealthDecisionEngine.Symptom.VOMITING);
+                    break;
+                case "body ache":
+                    symptoms.add(HealthDecisionEngine.Symptom.BODY_ACHE);
+                    break;
+                case "dizziness":
+                    symptoms.add(HealthDecisionEngine.Symptom.DIZZINESS);
+                    break;
+                case "skin rash":
+                    symptoms.add(HealthDecisionEngine.Symptom.SKIN_RASH);
+                    break;
+                case "eye discomfort":
+                    symptoms.add(HealthDecisionEngine.Symptom.EYE_DISCOMFORT);
+                    break;
+                case "toothache":
+                    symptoms.add(HealthDecisionEngine.Symptom.TOOTHACHE);
+                    break;
+                case "chest pain":
+                    symptoms.add(HealthDecisionEngine.Symptom.CHEST_PAIN);
+                    break;
                 case "shortness of breath":
-                case "breathing":                    symptoms.add(HealthDecisionEngine.Symptom.SHORTNESS_OF_BREATH); break;
-                case "nausea":                       symptoms.add(HealthDecisionEngine.Symptom.NAUSEA);              break;
-                case "weakness":                     symptoms.add(HealthDecisionEngine.Symptom.WEAKNESS);            break;
-                case "weight loss":                  symptoms.add(HealthDecisionEngine.Symptom.WEIGHT_LOSS);         break;
+                case "breathing":
+                    symptoms.add(HealthDecisionEngine.Symptom.SHORTNESS_OF_BREATH);
+                    break;
+                case "nausea":
+                    symptoms.add(HealthDecisionEngine.Symptom.NAUSEA);
+                    break;
+                case "weakness":
+                    symptoms.add(HealthDecisionEngine.Symptom.WEAKNESS);
+                    break;
+                case "weight loss":
+                    symptoms.add(HealthDecisionEngine.Symptom.WEIGHT_LOSS);
+                    break;
                 case "blood in stool":
-                case "blood stool":                  symptoms.add(HealthDecisionEngine.Symptom.BLOOD_IN_STOOL);      break;
+                case "blood stool":
+                    symptoms.add(HealthDecisionEngine.Symptom.BLOOD_IN_STOOL);
+                    break;
                 case "blood in urine":
-                case "peeblood":                     symptoms.add(HealthDecisionEngine.Symptom.BLOOD_IN_URINE);      break;
-                case "diarrhea":                     symptoms.add(HealthDecisionEngine.Symptom.DIARRHEA);            break;
+                case "peeblood":
+                    symptoms.add(HealthDecisionEngine.Symptom.BLOOD_IN_URINE);
+                    break;
+                case "diarrhea":
+                    symptoms.add(HealthDecisionEngine.Symptom.DIARRHEA);
+                    break;
                 case "stomach ache":
-                case "stomach pain":                 symptoms.add(HealthDecisionEngine.Symptom.STOMACH_ACHE);        break;
+                case "stomach pain":
+                    symptoms.add(HealthDecisionEngine.Symptom.STOMACH_ACHE);
+                    break;
             }
         }
         return symptoms;
@@ -158,38 +163,31 @@ public class assessment_res extends AppCompatActivity {
     private void updateRiskLevel(HealthDecisionEngine.RiskLevel risk) {
         riskRecycler.setLayoutManager(new LinearLayoutManager(this));
         riskRecycler.setNestedScrollingEnabled(false);
-        RiskAdapter adapter = new RiskAdapter(risk.name());
-        riskRecycler.setAdapter(adapter);
+        riskRecycler.setAdapter(new RiskAdapter(risk.name()));
     }
 
     @SuppressLint("SetTextI18n")
-    private void updateKeyFindings(HealthDecisionEngine.HealthAssessment result, boolean isHindi) {
+    private void updateKeyFindings(HealthDecisionEngine.HealthAssessment result) {
         if (result.isEmergency) {
-            String prefix = isHindi ? "⚠️ ज़रूरी: " : "⚠️ URGENT: ";
-            txtKeyTitle.setText(prefix + result.condition);
+            // ✅ getString() already returns Hindi or English based on Android locale
+            txtKeyTitle.setText(getString(R.string.urgent_prefix) + result.condition);
             txtKeyTitle.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
         } else {
-            String prefix = isHindi ? "आकलन: " : "Assessment: ";
-            txtKeyTitle.setText(prefix + result.condition);
+            txtKeyTitle.setText(getString(R.string.assessment_prefix) + result.condition);
         }
         txtKeyFindings.setText(result.explanation);
     }
 
     @SuppressLint("SetTextI18n")
     private void updateActionSteps(List<String> actions) {
-        actionText1.setText("");
-        actionText2.setText("");
-        actionText3.setText("");
+        actionText1.setText(actions.size() >= 1 ? "1️ " + actions.get(0) : "");
+        actionText2.setText(actions.size() >= 2 ? "2️ " + actions.get(1) : "");
+        actionText3.setText(actions.size() >= 3 ? "3️ " + actions.get(2) : "");
 
-        if (!actions.isEmpty())   actionText1.setText("1️⃣ " + actions.get(0));
-        if (actions.size() >= 2)  actionText2.setText("2️⃣ " + actions.get(1));
-        if (actions.size() >= 3)  actionText3.setText("3️⃣ " + actions.get(2));
-
-        // If more than 3 action steps, append them to the third text view
         if (actions.size() > 3) {
             StringBuilder extra = new StringBuilder(actionText3.getText().toString());
             for (int i = 3; i < actions.size(); i++) {
-                extra.append("\n\n").append((i + 1)).append("️⃣ ").append(actions.get(i));
+                extra.append("\n\n").append(i + 1).append("️⃣ ").append(actions.get(i));
             }
             actionText3.setText(extra.toString());
         }

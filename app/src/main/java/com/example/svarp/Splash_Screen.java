@@ -1,7 +1,6 @@
 package com.example.svarp;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -11,10 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Splash_Screen extends AppCompatActivity {
 
     private static final int SPLASH_DELAY_MS = 1500;
-
     private static final String PREFS_NAME = "app_prefs";
     private static final String KEY_ONBOARDING_DONE = "onboarding_done";
-    private static final String KEY_LANGUAGE = "selected_language";
 
     private Handler handler;
     private Runnable splashRunnable;
@@ -30,19 +27,16 @@ public class Splash_Screen extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash_screen);
 
-        SharedPreferences prefs =
-                getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean onboardingDone = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                .getBoolean(KEY_ONBOARDING_DONE, false);
 
-        boolean onboardingDone =
-                prefs.getBoolean(KEY_ONBOARDING_DONE, false);
-
-        String selectedLanguage =
-                prefs.getString(KEY_LANGUAGE, null);
+        // ✅ Read from LanguageAdapter's prefs — same file where language is saved
+        String selectedLanguage = getSharedPreferences(LanguageAdapter.PREFS_NAME, MODE_PRIVATE)
+                .getString(LanguageAdapter.KEY_LANGUAGE, null);
 
         handler = new Handler(Looper.getMainLooper());
 
         splashRunnable = () -> {
-
             Intent intent;
 
             if (!onboardingDone) {

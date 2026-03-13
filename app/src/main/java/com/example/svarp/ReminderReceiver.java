@@ -1,18 +1,18 @@
 package com.example.svarp;
 
+import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.SharedPreferences;
-import java.util.Calendar;
 import android.content.BroadcastReceiver;
-import android.app.AlarmManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+import java.util.Calendar;
 import java.util.Random;
 
 public class ReminderReceiver extends BroadcastReceiver {
@@ -96,18 +96,15 @@ public class ReminderReceiver extends BroadcastReceiver {
 
     private void createChannel(Context context) {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        NotificationChannel channel = new NotificationChannel(
+                CHANNEL_ID,
+                "Health Reminder",
+                NotificationManager.IMPORTANCE_HIGH
+        );
 
-            NotificationChannel channel = new NotificationChannel(
-                    CHANNEL_ID,
-                    "Health Reminder",
-                    NotificationManager.IMPORTANCE_HIGH
-            );
+        NotificationManager manager =
+                context.getSystemService(NotificationManager.class);
 
-            NotificationManager manager =
-                    context.getSystemService(NotificationManager.class);
-
-            manager.createNotificationChannel(channel);
-        }
+        manager.createNotificationChannel(channel);
     }
 }

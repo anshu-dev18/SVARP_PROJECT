@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.os.LocaleListCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -65,7 +67,15 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.Langua
             SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
             prefs.edit().putString(KEY_LANGUAGE, langCode).apply();
 
+            // ✅ Locale set करें — Hindi या English
+            if (langCode.equals(LANG_HINDI)) {
+                AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("hi"));
+            } else {
+                AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("en"));
+            }
+
             Intent intent = new Intent(context, Main_Screen.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             context.startActivity(intent);
 
             if (context instanceof Activity) {

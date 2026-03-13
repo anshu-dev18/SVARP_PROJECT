@@ -60,15 +60,6 @@
             android:paddingHorizontal="32dp"
             android:paddingVertical="20dp">
 
-            <!-- Last Updated -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:text="@string/privacy_last_updated"
-                android:textColor="@color/gray_secondary"
-                android:textSize="14sp" />
-
             <!-- Term 1 -->
             <TextView
                 android:layout_width="wrap_content"
@@ -84,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:lineSpacingExtra="4dp"
-                android:text="@string/e1"
+                android:text="@string/condition1"
                 android:textColor="@color/gray_secondary"
                 android:textSize="15sp" />
 
@@ -109,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:text="@string/e2"
+                android:text="@string/condition2"
                 android:textColor="@color/gray_secondary"
                 android:textSize="15sp" />
 
@@ -135,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:lineSpacingExtra="4dp"
-                android:text="@string/security_measures_body"
+                android:text="@string/condition3"
                 android:textColor="@color/gray_secondary"
                 android:textSize="15sp" />
 
@@ -161,7 +152,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:lineSpacingExtra="4dp"
-                android:text="@string/e4"
+                android:text="@string/condition4"
                 android:textColor="@color/gray_secondary"
                 android:textSize="15sp" />
 
@@ -172,23 +163,6 @@
                 android:layout_marginBottom="24dp"
                 android:background="@color/gray_border" />
 
-            <!-- Term 5 -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="@string/term5"
-                android:textColor="@color/blue_900"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:text="@string/e5"
-                android:textColor="@color/gray_secondary"
-                android:textSize="15sp" />
         </LinearLayout>
     </ScrollView>
 

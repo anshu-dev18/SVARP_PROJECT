@@ -72,7 +72,7 @@ public class OnboardingFragment extends Fragment {
 
         if (isLast) {
             skip.setVisibility(View.GONE);
-            next.setText(R.string.get_started);
+            next.setText(R.string.btnStart);
         }
 
         skip.setOnClickListener(v -> host.finishOnboarding());

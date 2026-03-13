@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:text="@string/privacy_title"
+            android:text="@string/privacy"
             android:textColor="@color/blue_900"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -60,15 +60,6 @@
             android:paddingHorizontal="32dp"
             android:paddingVertical="20dp">
 
-            <!-- Last Updated -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:text="@string/privacy_last_updated"
-                android:textColor="@color/gray_secondary"
-                android:textSize="14sp" />
-
             <!-- Medical Disclaimer Card -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -82,7 +73,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     android:padding="20dp">
 
                     <ImageView
@@ -96,16 +87,23 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/medical_disclaimer_title"
+                        android:text="@string/heading6"
                         android:textColor="#8A5A00"
                         android:textSize="18sp"
                         android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="50dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra="4dp"
-                        android:text="@string/medical_disclaimer_body"
+                        android:text="@string/tag"
                         android:textColor="#6B4A00"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -116,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/privacy_policy_title"
+                android:text="@string/privacy_policy"
                 android:textColor="@color/blue_900"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -126,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:lineSpacingExtra="4dp"
-                android:text="@string/privacy_policy_body"
+                android:text="@string/tag4"
                 android:textColor="@color/gray_secondary"
                 android:textSize="15sp" />
 
@@ -162,7 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/security_measures_title"
+                android:text="@string/heading7"
                 android:textColor="@color/blue_900"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -172,7 +170,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
                 android:lineSpacingExtra="4dp"
-                android:text="@string/security_measures_body"
+                android:text="@string/tag5"
                 android:textColor="@color/gray_secondary"
                 android:textSize="15sp" />
 
@@ -188,7 +186,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/contact_us_title"
+                android:text="@string/heading8"
                 android:textColor="@color/blue_900"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -197,7 +195,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="4dp"
-                android:text="@string/contact_us_body"
+                android:text="@string/tag6"
                 android:textColor="@color/gray_secondary"
                 android:textSize="15sp" />
 

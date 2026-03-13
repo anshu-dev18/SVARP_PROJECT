@@ -1,5 +1,6 @@
 package com.example.svarp;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ public class RiskAdapter extends RecyclerView.Adapter<RiskAdapter.RiskViewHolder
         return new RiskViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RiskViewHolder holder, int position) {
 
@@ -41,19 +43,19 @@ public class RiskAdapter extends RecyclerView.Adapter<RiskAdapter.RiskViewHolder
         card.setUseCompatPadding(false);
 
         if ("SAFE".equals(risk)) {
-            holder.text.setText("Safe");
+            holder.text.setText(holder.itemView.getContext().getString(R.string.risk_safe));
             holder.icon.setImageResource(R.drawable.safe);
-            holder.icon.setColorFilter(Color.parseColor("#2E7D32")); // green
+            holder.icon.setColorFilter(Color.parseColor("#2E7D32"));
 
         } else if ("MODERATE".equals(risk)) {
-            holder.text.setText("Moderate Risk");
+            holder.text.setText(holder.itemView.getContext().getString(R.string.risk_moderate));
             holder.icon.setImageResource(R.drawable.error);
-            holder.icon.setColorFilter(Color.parseColor("#DB671A")); // orange
+            holder.icon.setColorFilter(Color.parseColor("#DB671A"));
 
         } else if ("DANGER".equals(risk)) {
-            holder.text.setText("Danger");
+            holder.text.setText(holder.itemView.getContext().getString(R.string.risk_danger));
             holder.icon.setImageResource(R.drawable.warning);
-            holder.icon.setColorFilter(Color.parseColor("#C62828")); // red
+            holder.icon.setColorFilter(Color.parseColor("#C62828"));
         }
     }
 
