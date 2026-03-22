@@ -201,4 +201,9 @@
     <string name="condition_prefix">స్థితి: </string>
     <string name="advice_prefix">సలహా: </string>
 
+    <string name="warn4">లక్షణాలు పదేపదే కనిపించడం లేదా మళ్ళీ మళ్ళీ రావడం</string>
+    <string name="warn3">ఛాతి నొప్పి, శ్వాస తీసుకోవడంలో ఇబ్బంది, రక్తస్రావం వంటి తీవ్రమైన సంకేతాలు</string>
+    <string name="warn2">రోజువారీ సాధారణ పనులు లేదా కార్యకలాపాలు చేయలేకపోవడం</string>
+    <string name="warn1">కొన్ని రోజుల తర్వాత కూడా నయం కాకపోవడం లేదా పరిస్థితి మరింత దిగజారడం</string>
+
 </resources>

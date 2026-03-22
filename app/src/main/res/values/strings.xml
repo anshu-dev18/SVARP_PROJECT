@@ -207,4 +207,9 @@
     <string name="condition_prefix">Condition: </string>
     <string name="advice_prefix">Advice: </string>
 
+    <string name="warn4">Repeated symptoms or coming back again and again</string>
+    <string name="warn3">Serious signs like chest pain, breathing trouble, bleeding</string>
+    <string name="warn2">Unable to do normal daily work or activities</string>
+    <string name="warn1">Not getting better after a few days or getting worse</string>
+
 </resources>

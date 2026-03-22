@@ -201,4 +201,9 @@
     <string name="condition_prefix">நிலை: </string>
     <string name="advice_prefix">ஆலோசனை: </string>
 
+    <string name="warn4">அறிகுறிகள் மீண்டும் மீண்டும் ஏற்படுவது அல்லது அடிக்கடி வருவது</string>
+    <string name="warn3">நெஞ்சு வலி, சுவாசிப்பதில் சிரமம், இரத்தப்போக்கு போன்ற தீவிர அறிகுறிகள்</string>
+    <string name="warn2">அன்றாட சாதாரண வேலைகள் அல்லது செயல்களைச் செய்ய முடியாமல் போவது</string>
+    <string name="warn1">சில நாட்களுக்குப் பிறகும் குணமாகாமல் இருப்பது அல்லது நிலைமை மோசமடைவது</string>
+
 </resources>

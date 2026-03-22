@@ -203,4 +203,9 @@
     <string name="condition_prefix">स्थिती: </string>
     <string name="advice_prefix">सल्ला: </string>
 
+    <string name="warn4">लक्षणे वारंवार जाणवणे किंवा पुन्हा पुन्हा उद्भवणे</string>
+    <string name="warn3">गंभीर लक्षणे जसे की छातीत दुखणे, श्वास घेण्यास त्रास होणे किंवा रक्तस्त्राव होणे</string>
+    <string name="warn2">दैनंदिन कामे किंवा क्रियाकलाप करण्यास असमर्थ असणे</string>
+    <string name="warn1">काही दिवसांनंतरही प्रकृतीत सुधारणा न होणे किंवा स्थिती अधिक बिघडणे</string>
+
 </resources>

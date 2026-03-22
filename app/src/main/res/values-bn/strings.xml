@@ -201,4 +201,9 @@
     <string name="condition_prefix">অবস্থা: </string>
     <string name="advice_prefix">পরামর্শ: </string>
 
+    <string name="warn4">উপসর্গ বারবার দেখা দেওয়া বা ফিরে ফিরে আসা</string>
+    <string name="warn3">গুরুতর লক্ষণ যেমন বুকে ব্যথা, শ্বাসকষ্ট বা রক্তপাত</string>
+    <string name="warn2">স্বাভাবিক দৈনন্দিন কাজকর্ম করতে অক্ষম হওয়া</string>
+    <string name="warn1">কয়েক দিন পরেও অবস্থার উন্নতি না হওয়া বা আরও খারাপ হওয়া</string>
+
 </resources>

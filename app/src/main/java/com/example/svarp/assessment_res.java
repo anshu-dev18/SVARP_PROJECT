@@ -180,14 +180,14 @@ public class assessment_res extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void updateActionSteps(List<String> actions) {
-        actionText1.setText(actions.size() >= 1 ? "1️ " + actions.get(0) : "");
-        actionText2.setText(actions.size() >= 2 ? "2️ " + actions.get(1) : "");
-        actionText3.setText(actions.size() >= 3 ? "3️ " + actions.get(2) : "");
+        actionText1.setText(!actions.isEmpty() ? "1️. " + actions.get(0) : "");
+        actionText2.setText(actions.size() >= 2 ? "2️. " + actions.get(1) : "");
+        actionText3.setText(actions.size() >= 3 ? "3️. " + actions.get(2) : "");
 
         if (actions.size() > 3) {
             StringBuilder extra = new StringBuilder(actionText3.getText().toString());
             for (int i = 3; i < actions.size(); i++) {
-                extra.append("\n\n").append(i + 1).append("️⃣ ").append(actions.get(i));
+                extra.append("\n\n").append(i + 1).append(". ").append(actions.get(i));
             }
             actionText3.setText(extra.toString());
         }

@@ -203,4 +203,9 @@
     <string name="condition_prefix">स्थिति: </string>
     <string name="advice_prefix">सलाह: </string>
 
+    <string name="warn4">लक्षण बार-बार महसूस होना या बार-बार वापस आना</string>
+    <string name="warn3">गंभीर संकेत जैसे छाती में दर्द, सांस लेने में तकलीफ, या रक्तस्राव</string>
+    <string name="warn2">सामान्य दैनिक कार्य या गतिविधियाँ करने में असमर्थ होना</string>
+    <string name="warn1">कुछ दिनों के बाद भी सुधार न होना या स्थिति और बिगड़ जाना</string>
+
 </resources>

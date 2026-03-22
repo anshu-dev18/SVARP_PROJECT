@@ -201,4 +201,9 @@
     <string name="condition_prefix">स्थिती: </string>
     <string name="advice_prefix">सल्लो: </string>
 
+    <string name="warn4">लक्षणं परतून परतून दिसप वा वारंवार येवप</string>
+    <string name="warn3">गंभीर कुरू जशें काळजांत दुखप, श्वास घेवपाक त्रास जावप, वा रग़त वचप</string>
+    <string name="warn2">दिसपट्टे काम वा वावर करूंक शकना जावप</string>
+    <string name="warn1">कांय दिस जाले तरी गूण पडना जावप वा भलायकी चड इबाडप</string>
+
 </resources>
